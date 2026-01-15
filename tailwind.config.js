@@ -5,28 +5,28 @@ export default {
       colors: {
         primary: "var(--primary-color)",
         secondary: "var(--secondary-color)",
-        primaryLight: "#2A2A2A", // Darker light variant
-        grayText: "#9CA3AF",
-        // Emma Bot Colors - Premium Palette
+        primaryLight: "#EEF2FF", // Very light indigo
+        grayText: "#64748B",
+        // Emma Bot Colors - Modern Premium
         "emma-background": "hsl(var(--emma-background))",
         "emma-foreground": "hsl(var(--emma-foreground))",
         "emma-card": "hsl(var(--emma-card))",
         "emma-card-foreground": "hsl(var(--emma-card-foreground))",
         "emma-popover": "hsl(var(--emma-popover))",
         "emma-popover-foreground": "hsl(var(--emma-popover-foreground))",
-        "emma-primary": "#D4AF37", // Elegant Gold
-        "emma-primary-foreground": "#000000",
+        "emma-primary": "#6366F1", // Indigo 500
+        "emma-primary-foreground": "#ffffff",
         "emma-secondary": "#1E293B", // Slate 800
         "emma-secondary-foreground": "#F8FAFC",
         "emma-muted": "#334155",
         "emma-muted-foreground": "#94A3B8",
         "emma-accent": "#1E293B",
         "emma-accent-foreground": "#F8FAFC",
-        "emma-destructive": "#991B1B", // Dark Red
+        "emma-destructive": "#EF4444",
         "emma-destructive-foreground": "#ffffff",
         "emma-border": "#334155",
         "emma-input": "#334155",
-        "emma-ring": "#D4AF37", // Gold ring
+        "emma-ring": "#6366F1",
       },
       borderRadius: {
         lg: "var(--radius)",

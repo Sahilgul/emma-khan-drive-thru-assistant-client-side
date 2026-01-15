@@ -1,383 +1,41 @@
-/* ---------------------- Global ---------------------- */
-* {
-  font-family: var(--font-family);
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+@import "./AddMenu.css";
+
+/* ===============================
+   EDIT MENU - PREMIUM DARK THEME
+   Extends AddMenu.css dark styles
+   =============================== */
 
 .editmenu-container {
-  padding: 32px;
+  padding: 2rem;
+  background: var(--bg-page);
   min-height: 100vh;
+  font-family: var(--font-family);
+  animation: fadeIn 0.4s ease-out;
 }
 
-/* ---------------------- Header ---------------------- */
-.menu-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
-}
-
-.menu-title {
-  font-size: 24px;
-  font-weight: 600;
-  color: #111827;
-}
-
-/* ---------------------- Card ---------------------- */
 .editmenu-card {
-  background: #ffffff;
-  box-shadow: 0px 0px 10px 5px #0000000d;
-  border-radius: 20px;
-  padding: 24px;
-  margin-top: 10px;
-  border: 1px solid #6C7B7E
+  background: var(--bg-surface);
+  border-radius: 24px;
+  padding: 2.5rem;
+  border: 1px solid var(--border-default);
+  box-shadow: var(--shadow-lg);
 }
 
-.editmenu-card form {
-  width: 100%;
-}
-
-/* Grid layout: Upload + Inputs */
 .editmenu-card .grid {
   display: grid;
-  grid-template-columns: 340px 1fr;
-  gap: 48px;
+  grid-template-columns: 360px 1fr;
+  gap: 3rem;
 }
 
-/* ---------------------- Upload Box ---------------------- */
-.border-dashed {
-  border: 2px dashed #bcc4cc;
-  border-radius: 16px;
-  background: #f9fafb;
-  padding: 16px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 340px;
-  transition: border-color 0.2s;
-}
-
-.border-dashed:hover {
-  border-color: var(--secondary-color);
-}
-
-.upload-icon {
-  color: #9CA3AF;
-  margin-bottom: 8px;
-}
-
-.upload-text {
-  font-weight: 500;
-  color: #6B7280;
-  margin-bottom: 4px;
-}
-
-.image-desc {
-  font-size: 11px;
-  font-weight: 500;
-  line-height: 1.3;
-  color: #6C7B7E;
-  margin-top: 8px;
-}
-
-.choose-file-btn {
-  padding: 8px 16px;
-  border: 1px solid #BCC4CC;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 500;
-  background: #fff;
-  transition: background 0.2s;
-  margin-top: 12px;
-}
-.choose-file-btn:hover {
-  background: #f3f4f6;
-}
-
-/* Preview image */
-.image-preview {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-.preview-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 12px;
-}
-.remove-btn {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background: var(--danger-color);
-  color: #fff;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 12px;
-  cursor: pointer;
-}
-.remove-btn:hover {
-  background: var(--danger-hover);
-}
-
-/* ---------------------- Inputs ---------------------- */
-.editmenu-card input[type="text"],
-.editmenu-card input[type="number"],
-.editmenu-card textarea {
-  border: 1px solid #bcc4cc;
-  border-radius: 8px;
-  padding: 10px 14px;
-  font-size: 14px;
-  width: 100%;
-  transition: all 0.2s;
-  background: #fff;
-}
-
-.editmenu-card input:focus,
-.editmenu-card textarea:focus {
-  outline: none;
-  border: 1px solid var(--secondary-color);
-  box-shadow: 0 0 0 2px var(--secondary-light);
-}
-
-label {
-  font-weight: 500;
-  color: #111827;
-  font-size: 14px;
-  margin-bottom: 4px;
-  display: inline-block;
-}
-
-.space-y-4 > * + * {
-  margin-top: 16px;
-}
-
-/* Name + Price Row */
-.name-price-row {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-.name-price-row > div {
-  flex: 1;
-}
-
-/* Price input with icon */
-.price-input {
-  position: relative;
-}
-
-.price-icon {
-  position: absolute;
-  color: #9CA3AF;
-}
-.price-input input {
-  padding-left: 32px;
-}
-
-/* Combo section */
-.combo-section {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 8px;
-}
-.combo-section span {
-  font-weight: 500;
-  color: #111827;
-}
-.combo-label {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  cursor: pointer;
-}
-
-/* Combo Fields Row */
-.combo-fields {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-.combo-fields > div {
-  flex: 1;
-}
-
-/* ---------------------- Radio Buttons ---------------------- */
-.custom-radio {
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  border: 2px solid #6C7B7E;
-  border-radius: 2px;
-  background-color: #fff;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-.custom-radio:hover {
-  border-color: var(--secondary-color);
-}
-.custom-radio:checked {
-  background-color: var(--secondary-color);
-  border-color: var(--secondary-color);
-}
-.custom-radio:checked::after {
-  content: "";
-  position: absolute;
-  top: 6px;
-  left: 6px;
-  width: 8px;
-  height: 8px;
-  background-color: #fff;
-  border-radius: 1px;
-}
-.radio-label {
-  font-weight: 500;
-  font-size: 14px;
-  color: #6C7B7E;
-  transition: color 0.2s ease;
-}
-.radio-label.active {
-  color: var(--secondary-color);
-}
-
-/* ---------------------- Buttons ---------------------- */
-.flex.justify-end {
-  justify-content: flex-end;
-  gap: 16px;
-  margin-top: 32px;
-  display: flex;
-}
-
-button {
-  transition: all 0.2s ease-in-out;
-  border: none;
-  border-radius: 8px;
-  padding: 12px 36px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.save-btn {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  background: var(--secondary-color);
-  color: #fff;
-  border-radius: 8px;
-  padding: 12px 20px;
-  font-weight: 600;
-}
-.save-btn:hover {
-  background: var(--secondary-hover);
-}
-
-.delete-btn {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  background: var(--danger-color);
-  color: #fff;
-  border-radius: 8px;
-  padding: 12px 20px;
-  font-weight: 600;
-}
-.delete-btn:hover {
-  background: var(--danger-hover);
-}
-
-/* ---------------------- Delete Popup ---------------------- */
-.fixed.inset-0 {
-  backdrop-filter: blur(2px);
-}
-.popup-card {
-  background: #fff;
-  padding: 32px;
-  border-radius: 16px;
-  width: 380px;
-  text-align: center;
-}
-.popup-card h2 {
-  font-weight: 600;
-  font-size: 16px;
-  color: #111827;
-  margin-bottom: 8px;
-}
-.popup-card .delete-text {
-  font-weight: 600;
-  font-size: 12px;
-  color: #6C7B7E;
-  margin-bottom: 16px;
-}
-.btnCancel {
-  opacity: 1;
-  border: 1px solid #181818;
-  border-radius: 4px;
-  padding: 12px 24px;
-  font-weight: 600;
-  cursor: pointer;
-}
-.btnCancel:hover {
-  background: #e8e5e5;
-}
-
-/* ---------------------- Responsive ---------------------- */
-@media (max-width: 1024px) {
-  .editmenu-card .grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
+/* Animation same as others */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
 
-  .menu-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
-  .editmenu-card {
-    padding: 24px;
-  }
-
-  .flex.justify-end {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
-  }
-
-  button {
-    width: 100%;
-  }
-}
-
-@media (max-width: 640px) {
-  .editmenu-container {
-    padding: 20px;
-  }
-
-  .menu-title {
-    font-size: 20px;
-  }
-
-  .editmenu-card {
-    border-radius: 12px;
-    padding: 20px;
-  }
-
-  .name-price-row {
-    flex-direction: column;
-  }
-
-  .combo-fields {
-    flex-direction: column;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

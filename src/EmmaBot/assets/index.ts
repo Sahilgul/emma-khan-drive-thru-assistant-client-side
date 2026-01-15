@@ -26,5 +26,5 @@ export const PUBLIC_ASSETS_IMAGES = {
   OrderScreenImg: '/images/order-screen-bg.jpg',
   AddOnImg: '/images/add-ons.png',
   DessertsBg: '/images/dessert-bg.png',
-  AiModelImg: '/images/model-img.png',
+  AiModelImg: '/images/Emmakhan-gpt_portrait.png',
 } as const;

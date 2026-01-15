@@ -1,198 +1,135 @@
+/* ===============================
+   ADDONS - PREMIUM DARK THEME
+   =============================== */
+
 .addaddons-container {
   padding: 2rem;
+  background: var(--bg-page);
+  min-height: 100vh;
   font-family: var(--font-family);
+  animation: fadeIn 0.4s ease-out;
 }
 
-/* ===== HEADER ===== */
 .addaddons-header {
   display: flex;
   justify-content: space-between;
-  align-items: right;
-  width: 100%;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
-}
-
-.header-left {
-  display: flex;
   align-items: center;
-  gap: 10px;
+  margin-bottom: 2rem;
 }
 
 .header-left h1 {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-primary);
+  margin: 0;
 }
 
-.edit-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--secondary-color);
-  color: #fff;
-  border: none;
-  padding: 0.4rem 0.8rem;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-.edit-btn:hover {
-  background-color: var(--secondary-hover);
-}
-
-.apply-btn {
-  background-color: var(--secondary-color);
-  color: #fff;
-  border: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-.apply-btn:hover {
-  background-color: var(--secondary-hover);
-}
-
-/* ===== ADDON CARD ===== */
-.addon-wrapper {
-  margin-bottom: 2rem;
-  max-width: 700px;
+/* CARDS */
+.addon-wrapper h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
 }
 
 .addon-card {
-  border-radius: 20px;
-  padding: 1.5rem;
-  background: #fff;
-  border: 1px solid #6C7B7E;
-  box-shadow: 0px 0px 10px 5px #0000000D;
-}
-
-.addon-wrapper h2 {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #111827;
-  margin-bottom: 1rem;
+  background: var(--bg-surface);
+  border-radius: 24px;
+  padding: 2rem;
+  border: 1px solid var(--border-default);
+  box-shadow: var(--shadow-lg);
+  max-width: 800px;
 }
 
 .addon-row {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
-.addon-field {
-  flex: 1;
-  min-width: 180px;
-  display: flex;
-  flex-direction: column;
-}
-
+/* FIELDS */
 .addon-field label {
-  font-weight: 500;
-  color: #374151;
-  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
 }
 
 .addon-field input,
 .addon-field select {
-  border: 1px solid #bcc4cc;
-  border-radius: 8px;
-  padding: 10px 14px;
-  font-size: 14px;
-  transition: all 0.2s;
-  background: #fff;
+  background: var(--bg-input);
+  border: 1px solid var(--border-default);
+  color: var(--text-primary);
+  border-radius: 12px;
+  padding: 12px;
+  transition: all 0.3s ease;
 }
 
 .addon-field input:focus,
 .addon-field select:focus {
-  border-color: var(--secondary-color);
-  box-shadow: 0 0 0 2px #76b90033;
+  border-color: var(--primary-indigo);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
   outline: none;
 }
 
-/* ===== ACTION BUTTONS ===== */
-.action-row {
-  display: flex;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.addmore-btn,
-.delete-btn,
-.save-btn {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-  border-radius: 6px;
-  padding: 0.6rem 1rem;
-  transition: all 0.2s;
-}
-
+/* BUTTONS */
 .addmore-btn {
-  background: none;
-  color: var(--secondary-color);
+  color: var(--primary-indigo-light);
+  font-weight: 600;
 }
+
 .addmore-btn:hover {
-  color: var(--secondary-hover);
+  color: var(--primary-indigo);
+}
+
+.apply-btn,
+.save-btn {
+  background: var(--gradient-primary);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 700;
+  box-shadow: var(--shadow-glow);
+  border: none;
+}
+
+.apply-btn:hover,
+.save-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow-lg);
 }
 
 .delete-btn {
-  background-color: #ef4444;
-  color: #fff;
+  background: var(--danger-color);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 700;
+  border: none;
 }
+
 .delete-btn:hover {
-  background-color: #dc2626;
+  background: var(--danger-hover);
+  transform: translateY(-2px);
 }
 
-.save-btn {
-  background-color: var(--secondary-color);
-  color: #fff;
-}
-.save-btn:hover {
-  background-color: var(--secondary-hover);
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  .addaddons-container {
-    padding: 1rem;
-  }
-
-  .addaddons-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.8rem;
-  }
-
-  .header-left {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .addon-card {
-    padding: 1rem;
-  }
-
   .addon-row {
     flex-direction: column;
   }
 
-  .action-row {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .addmore-btn,
-  .delete-btn,
-  .save-btn {
-    width: 100%;
-    justify-content: center;
+  .addon-card {
+    max-width: 100%;
   }
 }

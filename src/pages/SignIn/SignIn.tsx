@@ -32,9 +32,9 @@ const SignIn: FC = () => {
 
       // Use context (handles token, expiry, localStorage, etc.)
       await login(email, password);
-      
+
       navigate("/dashboard");
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       console.error("Login failed:", err);
 
@@ -62,51 +62,51 @@ const SignIn: FC = () => {
         </h2>
         <p className="subtitle">Sign in with your company account</p>
 
-      {/* Wrap EVERYTHING inside a form for ENTER KEY support */}
-      <form onSubmit={(e) => { e.preventDefault(); handleSignIn(); }}>
-        {/* Email Field */}
-        <div className="field">
-          <label>Email</label>
-          <input
-            type="email"
-            placeholder="input your email in here"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            disabled={loading}
-          />
-        </div>
+        {/* Wrap EVERYTHING inside a form for ENTER KEY support */}
+        <form onSubmit={(e) => { e.preventDefault(); handleSignIn(); }}>
+          {/* Email Field */}
+          <div className="field">
+            <label>Email</label>
+            <input
+              type="email"
+              placeholder="input your email in here"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              disabled={loading}
+            />
+          </div>
 
-        {/* Password Field */}
-        <div className="field password">
-          <label>Password</label>
-          <input
-            type={showPassword ? "text" : "password"}
-            placeholder="input your password in here"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            disabled={loading}
-          />
-          <span
-            className="toggle-visibility"
-            onClick={() => setShowPassword(!showPassword)}
-          >
-            <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
-          </span>
-        </div>
+          {/* Password Field */}
+          <div className="field password">
+            <label>Password</label>
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="input your password in here"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              disabled={loading}
+            />
+            <span
+              className="toggle-visibility"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+            </span>
+          </div>
 
-        <p className="forgot" onClick={() => navigate("/forgot-password")}>
-          Forgot password?
-        </p>
+          <p className="forgot" onClick={() => navigate("/forgot-password")}>
+            Forgot password?
+          </p>
 
-        <button
-            type="submit"         
+          <button
+            type="submit"
             className="signin-btn"
             disabled={loading}
           >
             {loading ? "Please wait..." : "Sign in"}
           </button>
 
-        {/* <p className="subtitle" style={{ marginTop: "16px" }}>
+          {/* <p className="subtitle" style={{ marginTop: "16px" }}>
           Don't have an account?{" "}
           <span
             className="highlight"

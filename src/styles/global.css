@@ -3,7 +3,7 @@
 /* Custom styles */
 @layer base {
   body {
-    @apply font-poppins bg-[#F7F8FA] text-gray-800;
+    @apply font-poppins bg-[#020617] text-[#F8FAFC];
   }
 }
 
@@ -12,6 +12,7 @@
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
+
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }

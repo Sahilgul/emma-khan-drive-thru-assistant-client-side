@@ -1,245 +1,172 @@
+/* ===============================
+   SIDES - PREMIUM DARK THEME
+   =============================== */
+
 .addSides-container {
   padding: 2rem;
+  background: var(--bg-page);
+  min-height: 100vh;
   font-family: var(--font-family);
-  display: flex;
-  flex-direction: column;
+  animation: fadeIn 0.4s ease-out;
 }
 
-/* ===== HEADER ===== */
 .addSides-header {
-  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
-  flex-wrap: wrap;
-}
-
-.header-left {
-  display: flex;
-  align-items: center;
-  gap: 10px;
 }
 
 .header-left h1 {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-primary);
+  margin: 0;
 }
 
-.edit-btn {
-  background: var(--secondary-color);
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 6px 10px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-.edit-btn:hover {
-  background: var(--secondary-hover);
-}
-
-/* ===== SIDE CARD ===== */
-.side-wrapper {
-  width: 100%;
-  max-width: 700px;
-  margin-bottom: 2rem;
-}
-
+/* CARDS */
 .side-wrapper h2 {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #111827;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
   margin-bottom: 1rem;
 }
 
 .side-card {
-  background: #fff;
-  border-radius: 20px;
-  padding: 1.5rem;
-  border: 1px solid #6C7B7E;
-  box-shadow: 0px 0px 10px 5px #0000000D;
+  background: var(--bg-surface);
+  border-radius: 24px;
+  padding: 2rem;
+  border: 1px solid var(--border-default);
+  box-shadow: var(--shadow-lg);
+  max-width: 800px;
 }
 
 .side-row {
   display: flex;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-  align-items: flex-start;
+  gap: 2rem;
 }
 
+/* UPLOAD */
 .upload-icon {
+  width: 120px;
+  height: 120px;
+  border: 2px dashed var(--slate-700);
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 110px;
-  height: 110px;
-  border: 1px dashed #cbd5e1;
-  border-radius: 12px;
-  background: #f3f4f6;
   cursor: pointer;
-  transition: border-color 0.3s;
+  transition: all 0.3s ease;
 }
+
 .upload-icon:hover {
-  border-color: var(--secondary-hover);
+  border-color: var(--primary-indigo);
+  background: rgba(99, 102, 241, 0.05);
 }
+
 .upload-icon img {
-  width: 70px;
-  height: 70px;
-  border-radius: 10px;
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
   object-fit: cover;
 }
+
 .upload-placeholder {
-  margin-bottom: 4px;
-  color: #6b7280;
+  color: var(--primary-indigo-light);
 }
+
 .upload-icon span {
-  font-size: 12px;
-  color: #4b5563;
+  color: var(--text-muted);
+  font-size: 11px;
 }
 
-/* ===== FIELDS ===== */
-.side-fields {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.input-group {
-  display: flex;
-  flex-direction: column;
-}
+/* FIELDS */
 .input-group label {
+  font-size: 0.9rem;
   font-weight: 600;
-  color: #374151;
-  margin-bottom: 4px;
-  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
 }
+
 .input-group input {
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  padding: 10px 12px;
-  font-size: 14px;
-  outline: none;
-  transition: border 0.2s, box-shadow 0.2s;
+  background: var(--bg-input);
+  border: 1px solid var(--border-default);
+  color: var(--text-primary);
+  border-radius: 12px;
+  padding: 12px;
+  transition: all 0.3s ease;
 }
+
 .input-group input:focus {
-  border-color: var(--secondary-color);
-  box-shadow: 0 0 0 2px #76b90033;
+  border-color: var(--primary-indigo);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+  outline: none;
 }
 
-/* ===== OPTION ROW ===== */
-.option-row {
-  display: flex;
-  align-items: flex-end;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-.option-row .small {
-  min-width: 100px;
-  flex: 1;
-}
-.option-actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.addMore-btn,
-.removeRow-btn,
-.delete-btn,
-.save-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
+/* BUTTONS */
+.addMore-btn {
+  color: var(--primary-indigo-light);
   font-weight: 600;
+  background: none;
   border: none;
   cursor: pointer;
-  border-radius: 6px;
-  padding: 0.6rem 1rem;
-  transition: all 0.2s;
 }
 
-.addMore-btn {
-  background: none;
-  color: var(--secondary-color);
-}
 .addMore-btn:hover {
-  color: var(--secondary-hover);
-}
-
-.removeRow-btn {
-  background: none;
-  color: var(--danger-color);
-}
-.removeRow-btn:hover {
-  color: var(--danger-hover);
-}
-
-/* ===== ACTION BUTTONS ===== */
-.action-row {
-  display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-top: 1rem;
-}
-
-.side-card .delete-btn {
-  background: var(--danger-color);
-  color: var(--danger-color);
-}
-.side-card .delete-btn:hover {
-  background: var(--danger-hover);
+  color: var(--primary-indigo);
 }
 
 .save-btn {
-  background: var(--secondary-color);
-  color: #fff;
+  background: var(--gradient-primary);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 700;
+  box-shadow: var(--shadow-glow);
+  border: none;
+  cursor: pointer;
 }
+
 .save-btn:hover {
-  background: var(--secondary-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow-lg);
 }
 
-/* ===== RESPONSIVE ===== */
+.delete-btn {
+  background: var(--danger-color);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background: var(--danger-hover);
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 768px) {
-  .addSides-container {
-    padding: 1rem;
-  }
-
-  .addSides-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.8rem;
-  }
-
-  .header-left {
-    width: 100%;
-    justify-content: space-between;
-  }
-
   .side-row {
     flex-direction: column;
-    align-items: center;
   }
 
-  .upload-icon {
-    width: 90px;
-    height: 90px;
-  }
-
-  .action-row {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .addMore-btn,
-  .delete-btn,
-  .save-btn {
-    width: 100%;
+  .side-card {
+    max-width: 100%;
   }
 }

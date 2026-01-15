@@ -1,464 +1,210 @@
-/* ===== Base Styles ===== */
+/* ===============================
+   PROMOTION - PREMIUM DARK THEME
+   =============================== */
+
 .promotion-container {
-    min-height: 100vh;
-    background: #f9fafb;
-    padding: 2rem;
-    font-family: "Poppins", sans-serif;
-  }
-  
-  .promotion-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  .promotion-title-main {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #222;
-  }
-  
-  .promotion-subtitle {
-    color: #666;
-    font-size: 0.9rem;
-  }
-  
-  .btn-add {
-    background-color: var(--secondary-color);
-    color: white;
-    font-weight: 600;
-    border-radius: 8px;
-    padding: 0.6rem 1.2rem;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    transition: 0.2s;
-    font-size: 14px;
-  }
-  
-  .btn-add:hover {
-    background-color: var(--secondary-hover);
-  }
-  
-  /* Dropdown */
-  .promotion-dropdown {
-    margin-bottom: 1.5rem;
-  }
-  
-  .screen-select {
-    border: 1px solid #ccc;
-    padding: 0.4rem 0.7rem;
-    border-radius: 6px;
-  }
-  
-  /* Section Heading */
-  .section-heading {
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 0.5rem;
-    margin-top: 1.5rem;
-  }
-  
-  /* ===== Grid Layout ===== */
-  .promotion-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-  }
-  
-  /* ===== Promotion Card ===== */
-  .promotion-card {
-    width: 100%;
-    max-width: 480px;
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-    border: 1px solid #6c7b7e;
-  }
-  
-  .promotion-image img {
-    padding: 8px;
-    border-radius: 12px;
-    width: 100%;
-    height: 180px;
-    object-fit: fill;
-  }
-  
-  .promotion-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.8rem 1rem;
-    border-top: 1px solid #eee;
-  }
-  
-  .promotion-title {
-    font-weight: 600;
-    font-size: 0.95rem;
-    color: #333;
-  }
-  
-  .promotion-right {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  
-  /* ===== Toggle Switch ===== */
-  .switch {
-    position: relative;
-    display: inline-block;
-    width: 36px;
-    height: 18px;
-  }
-  .switch input {
+  min-height: 100vh;
+  background: var(--bg-page);
+  padding: 2rem;
+  font-family: var(--font-family);
+  animation: fadeIn 0.4s ease-out;
+}
+
+.promotion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.promotion-title-main {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.promotion-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.btn-add {
+  background: var(--gradient-primary);
+  color: white;
+  font-weight: 700;
+  border-radius: 12px;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-glow);
+  border: none;
+}
+
+.btn-add:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow-lg);
+}
+
+/* SCREEN SELECT */
+.screen-select {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-default);
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-weight: 600;
+  outline: none;
+}
+
+.screen-select:focus {
+  border-color: var(--primary-indigo);
+}
+
+/* GRID LAYOUT */
+.promotion-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.5rem;
+}
+
+/* PROMOTION CARD */
+.promotion-card {
+  background: var(--bg-surface);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-default);
+  transition: all 0.3s ease;
+}
+
+.promotion-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(99, 102, 241, 0.3);
+  box-shadow: var(--shadow-glow);
+}
+
+.promotion-image img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.promotion-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+}
+
+.promotion-title {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+/* TOGGLE */
+.status {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status.active {
+  color: var(--secondary-color);
+}
+
+.status.inactive {
+  color: var(--danger-color);
+}
+
+/* ACTIONS */
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-edit,
+.btn-delete {
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.btn-edit {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border: 1px solid var(--border-default);
+}
+
+.btn-edit:hover {
+  background: var(--secondary-light);
+  color: var(--primary-indigo-light);
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+.btn-delete {
+  background: var(--danger-light);
+  color: var(--danger-color);
+  border: 1px solid transparent;
+}
+
+.btn-delete:hover {
+  background: var(--danger-color);
+  color: white;
+}
+
+/* MODAL */
+.model-promotion {
+  background: var(--bg-surface) !important;
+  border: 1px solid var(--border-default) !important;
+  border-radius: 24px !important;
+  padding: 2rem !important;
+}
+
+.model-promotion h3 {
+  color: var(--text-primary) !important;
+}
+
+.upload-box {
+  background: rgba(0, 0, 0, 0.1) !important;
+  border: 2px dashed var(--slate-700) !important;
+  border-radius: 16px !important;
+}
+
+.upload-box:hover {
+  border-color: var(--primary-indigo) !important;
+}
+
+.upload-text {
+  color: var(--text-primary) !important;
+}
+
+@keyframes fadeIn {
+  from {
     opacity: 0;
-    width: 0;
-    height: 0;
+    transform: translateY(10px);
   }
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    background-color: #ccc;
-    border-radius: 34px;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    transition: 0.4s;
-  }
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 14px;
-    width: 14px;
-    left: 2px;
-    bottom: 2px;
-    background-color: white;
-    border-radius: 50%;
-    transition: 0.4s;
-  }
-  input:checked + .slider {
-    background-color: var(--secondary-color);
-  }
-  input:checked + .slider:before {
-    transform: translateX(18px);
-  }
-  .slider.round {
-    border-radius: 34px;
-  }
-  
-  /* Status Text */
-  .status {
-    font-size: 0.8rem;
-    margin-left: 6px;
-    font-weight: 600;
-  }
-  .status.active {
-    color: var(--secondary-color);
-  }
-  .status.inactive {
-    color: var(--danger-color);
-  }
-  
-  /* ===== Action Buttons ===== */
-  .action-buttons {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
-  .btn-edit,
-  .btn-delete {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 0.8rem;
-    font-weight: 500;
-    border-radius: 6px;
-    padding: 10px 15px;
-  }
-  .btn-edit {
-    color: #ffff;
-    background-color: var(--secondary-color);
-  }
-  .btn-delete {
-    background: var(--danger-color);
-    color: #ffff;
-  }
-  .btn-edit:hover {
-    background: var(--secondary-hover);
-  }
-  .btn-delete:hover {
-    background: var(--danger-hover);
-  }
-  
-  /* ===== Modal ===== */
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.45);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
-  }
-  
-  .modal-box {
-    background: white;
-    width: 95%;
-    max-width: 480px;
-    padding: 1.5rem;
-    border-radius: 12px;
-    position: relative;
-  }
-  
-  .modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .modal-form {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-    margin-top: 1rem;
-  }
-  
-  .modal-form input,
-  .modal-form select {
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-  }
-  
-  select:focus{
-    outline: none;
-    border: 1px solid var(--secondary-color);
-    box-shadow: 0 0 0 2px var(--secondary-light);
-  }
-  input:focus{
-    outline: none;
-  border: 1px solid var(--secondary-color);
-  box-shadow: 0 0 0 2px var(--secondary-light);
-  }
-  /* ===== Image Upload ===== */
-  .model-promotion {
-    font-family: "Poppins", sans-serif;
+
+  to {
     opacity: 1;
-    border-radius: 20px;
-    border: 1px solid #181818;
+    transform: translateY(0);
   }
-  
-  .model-promotion h3 {
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 100%;
+}
+
+@media (max-width: 640px) {
+  .promotion-container {
+    padding: 1rem;
   }
-  
-  .model-promotion .upload-box {
-    width: 100%;
-    max-width: 440px;
-    height: 320px;
-    border: 1px dashed #6c7b7e80;
-    border-radius: 12px;
-    box-shadow: 0px 0px 10px 2px #0000001a;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #fff;
-    overflow: hidden;
-    margin: 0 auto;
+
+  .promotion-grid {
+    grid-template-columns: 1fr;
   }
-  
-  .upload-label {
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .upload-content {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    color: #6c7b7e;
-  }
-  
-  .upload-img {
-    width: 64px;
-    height: 64px;
-    color: #6c7b7e;
-  }
-  
-  .upload-text {
-    font-size: 16px;
-    font-weight: 600;
-    color: #333;
-  }
-  
-  .img-desc {
-    margin-top: 6px;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 1.4;
-    color: #6c7b7e;
-    max-width: 340px;
-  }
-  
-  .image-preview {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .image-preview img {
-    width: 100%;
-    height: 100%;
-    border-radius: 12px;
-    object-fit: cover;
-  }
-  
-  .btn-remove {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: var(--danger-color);
-    color: white;
-    border: none;
-    border-radius: 6px;
-    padding: 4px 10px;
-    font-size: 12px;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
-  .btn-remove:hover {
-    background: var(--danger-hover);
-  }
-  
-  /* ===== Modal Actions ===== */
-  .modal-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-top: 20px;
-  }
-  
-  .btn-cancel,
-  .btn-save {
-    min-width: 120px;
-    height: 42px;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 14px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 0px 6px 4px 0px #0000001a;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .btn-cancel {
-    background: #f2f2f2;
-    color: #333;
-    border: 1px solid #181818;
-  }
-  .btn-cancel:hover {
-    background: #e4e4e4;
-  }
-  .btn-save {
-    background: var(--secondary-color);
-    color: white;
-  }
-  .btn-save:hover {
-    background: var(--secondary-hover);
-  }
-  
-  /* ===== Responsive Design ===== */
-  
-  /* Medium devices (tablets) */
-  @media (max-width: 992px) {
-    .promotion-header {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  
-    .promotion-card {
-      max-width: 100%;
-    }
-  
-    .model-promotion .upload-box {
-      max-width: 100%;
-      height: 260px;
-    }
-  
-    .img-desc {
-      max-width: 300px;
-    }
-  }
-  
-  /* Small devices (phones) */
-  @media (max-width: 600px) {
-    .promotion-container {
-      padding: 1rem;
-    }
-  
-    .promotion-title-main {
-      font-size: 1.25rem;
-    }
-  
-    .btn-add {
-      width: 100%;
-      justify-content: center;
-    }
-  
-    .promotion-grid {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .promotion-card {
-      max-width: 100%;
-    }
-  
-    .modal-box {
-      padding: 1rem;
-      width: 90%;
-    }
-  
-    .model-promotion .upload-box {
-      height: 220px;
-    }
-  
-    .upload-img {
-      width: 48px;
-      height: 48px;
-    }
-  
-    .upload-text {
-      font-size: 14px;
-    }
-  
-    .img-desc {
-      font-size: 11px;
-    }
-  
-    .btn-cancel,
-    .btn-save {
-      min-width: 100px;
-      height: 38px;
-      font-size: 13px;
-    }
-  }
-  
+}

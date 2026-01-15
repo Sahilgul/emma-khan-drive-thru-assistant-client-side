@@ -1,213 +1,223 @@
-* {
-  font-family: var(--font-family);
-  box-sizing: border-box;
-}
+/* ===============================
+   CATEGORIES - PREMIUM DARK THEME
+   =============================== */
 
-/* Page container */
 .categories-container {
-  padding: 24px;
+  padding: 2rem;
+  background: var(--bg-page);
   min-height: 100vh;
+  font-family: var(--font-family);
+  animation: fadeIn 0.4s ease-out;
 }
 
-/* Header */
+/* HEADER */
 .menu-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 2rem;
 }
 
 .menu-title {
-  font-size: 24px;
+  font-size: 1.75rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-primary);
+  margin: 0;
 }
 
 .add-menu-btn {
+  background: var(--gradient-primary);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   gap: 8px;
-  background: var(--secondary-color);
-  color: #fff;
-  font-weight: 500;
-  border-radius: 8px;
-  padding: 10px 16px;
-  border: none;
   cursor: pointer;
-  transition: all 0.2s;
+  box-shadow: var(--shadow-glow);
+  transition: all 0.3s ease;
 }
 
 .add-menu-btn:hover {
-  background: var(--secondary-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow-lg);
 }
 
-/* Category tabs */
+/* CATEGORY TABS */
 .category-tabs {
   display: flex;
-  gap: 10px;
-  margin-bottom: 24px;
-  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 2px;
 }
 
 .category-tab {
   font-size: 1.1rem;
-  font-weight: 500;
-  color: #6b7280;
-  padding-bottom: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  padding: 0.75rem 0;
   border: none;
   background: none;
   cursor: pointer;
   transition: all 0.3s;
+  position: relative;
+}
+
+.category-tab:hover {
+  color: var(--text-primary);
 }
 
 .category-tab.active {
-  color: var(--secondary-color);
-  border-bottom: 2px solid var(--secondary-color);
+  color: var(--primary-indigo-light);
 }
 
-/* Grid layout */
+.category-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--gradient-primary);
+  border-radius: 10px;
+}
+
+/* GRID LAYOUT */
 .menu-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
 }
 
-/* Menu Card */
+/* MENU CARD */
 .menu-card {
-  background: #ffffff;
+  background: var(--bg-surface);
   border-radius: 24px;
-  box-shadow: 24px 24px 64px 0px #0000000f;
-  padding: 20px;
+  border: 1px solid var(--border-default);
+  padding: 1.5rem;
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  min-height: 300px;
-  transition: all 0.3s;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+  min-height: 320px;
 }
 
 .menu-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 20px 20px 60px 0px #00000012;
+  transform: translateY(-8px);
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: var(--shadow-glow);
 }
 
-/* Disabled look */
 .menu-card.not-available {
-  opacity: 0.8;
-  filter: grayscale(40%);
-  border: 1px solid #d1d5db;
+  opacity: 0.7;
+  filter: grayscale(60%);
 }
 
-/* Optional: Disable hover effect on unavailable cards */
-.menu-card.not-available:hover {
-  transform: none;
-  box-shadow: none;
-}
-
-/* Edit icon */
+/* EDIT ICON */
 .edit-icon {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  background: var(--secondary-light);
-  color: var(--secondary-color);
-  padding: 8px;
+  top: 1rem;
+  right: 1rem;
+  background: var(--bg-elevated);
+  color: var(--primary-indigo-light);
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  border: none;
+  border: 1px solid var(--border-default);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  transition: all 0.2s;
+  z-index: 5;
 }
 
 .edit-icon:hover {
-  color: #FFFF;
-  background: var(--secondary-hover);
+  background: var(--primary-indigo);
+  color: white;
+  transform: scale(1.1);
 }
 
-/* Image */
+/* IMAGE */
 .menu-img {
   display: flex;
   justify-content: center;
-  align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 1.5rem;
 }
 
 .menu-img img {
-  width: 104px;
-  height: 104px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   object-fit: cover;
-  background: white;
+  border: 3px solid var(--bg-elevated);
+  box-shadow: var(--shadow-sm);
 }
 
 .menu-info {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start; /* keep name/combo/desc top-aligned */
-  text-align: left;
-  gap: 4px; /* ✅ small consistent spacing between text elements */
-  margin-bottom: 8px; /* ✅ less gap before footer */
+  text-align: center;
 }
 
-
 .menu-name {
-  font-weight: 600;
-  font-size: 20px;
-  color: #111827;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
 }
 
 .menu-combo {
-  color: var(--secondary-color);
+  color: var(--primary-indigo-light);
   font-weight: 600;
   font-size: 0.9rem;
-  margin-top: 4px;
+  margin-bottom: 0.75rem;
 }
 
 .menu-desc {
-  margin-top: 6px;
-  font-weight: 400;
-  font-size: 0.8rem;
-  line-height: 1.4;
-  color: #6c7b7e;
-  flex-grow: 0; /* ✅ prevent extra space */
-  min-height: auto; /* ✅ remove forced height */
-  margin-bottom: 8px; /* ✅ small controlled gap before footer */
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
 }
 
-
-/* Footer */
+/* FOOTER */
 .menu-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: auto;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-subtle);
 }
 
-/* Price */
 .menu-price {
   color: white;
-  font-weight: 600;
-  font-size: 16px;
-  background: var(--secondary-color);
-  border-radius: 16px;
-  padding: 4px 20px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  background: var(--gradient-primary);
+  border-radius: 12px;
+  padding: 0.4rem 1.25rem;
+  box-shadow: var(--shadow-sm);
 }
 
-/* Status */
+/* TOGGLE */
 .menu-status {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   cursor: pointer;
-  user-select: none;
 }
 
 .toggle {
-  width: 36px;
-  height: 18px;
-  border-radius: 50px;
+  width: 38px;
+  height: 20px;
+  border-radius: 20px;
   display: flex;
   align-items: center;
-  padding: 2px;
+  padding: 3px;
   transition: all 0.3s ease;
 }
 
@@ -216,7 +226,7 @@
 }
 
 .toggle.off {
-  background: #d1d5db;
+  background: var(--slate-700);
 }
 
 .toggle-circle {
@@ -231,53 +241,27 @@
   transform: translateX(18px);
 }
 
+.status-text {
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
 .status-text.available {
   color: var(--secondary-color);
-  font-weight: 500;
-  font-size: 0.8rem;
 }
 
 .status-text.not {
-  color: #9ca3af;
-  font-weight: 500;
-  font-size: 0.8rem;
+  color: var(--text-muted);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .menu-grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
 
-  .menu-card {
-    padding: 16px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-
-  .menu-name {
-    font-size: 1rem;
-  }
-
-  .menu-price {
-    font-size: 0.9rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .categories-container {
-    padding: 16px;
-  }
-
-  .menu-grid {
-    gap: 16px;
-  }
-
-  .menu-card {
-    border-radius: 16px;
-  }
-  .edit-icon {
-    padding-left: 15px;
-    text-align: -webkit-right;
-    background-color: transparent;
-  }
-
 }
