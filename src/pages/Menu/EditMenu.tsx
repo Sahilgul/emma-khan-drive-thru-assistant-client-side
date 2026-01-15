@@ -4,7 +4,7 @@ import { ImagePlusIcon, SaveIcon, Trash, Loader, AlertCircle } from "lucide-reac
 import { getMenuItems, updateMenuItem, deleteMenuItem, uploadImage } from "@emma/apis/menu";
 import { showSuccess, showError } from "../../utils/alert";
 import { useAuth } from "../../hooks/useAuth";
-import "./EditMenu.css";
+
 
 const EditMenu: React.FC = () => {
   const navigate = useNavigate();

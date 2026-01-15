@@ -17,7 +17,6 @@ import {
 import { Line, Bar, Doughnut } from "react-chartjs-2";
 import { TrendingUp, TrendingDown, Calendar, ChevronDown, Loader, AlertCircle, Database } from "lucide-react";
 
-import "./Dashboard.css";
 import { formatCurrency } from "../../services/dashboardService";
 import { useDashboardData } from "../../hooks/useDashboardData";
 import { useAuth } from "../../hooks/useAuth";
@@ -37,10 +36,9 @@ ChartJS.register(
 
 // State Components
 const LoadingState: React.FC = () => (
-  <div className="dashboard-state loading-state">
-    <Loader className="animate-spin" size={48} />
-    <h3>Loading Dashboard...</h3>
-    {/* <p>Please wait while we load your data...</p> */}
+  <div className="flex flex-col items-center justify-center h-[500px] text-teal-600">
+    <Loader className="animate-spin mb-4" size={48} />
+    <h3 className="text-xl font-semibold text-slate-700">Loading Dashboard...</h3>
   </div>
 );
 
@@ -50,12 +48,12 @@ interface ErrorStateProps {
 }
 
 const ErrorState: React.FC<ErrorStateProps> = ({ message, onRetry }) => (
-  <div className="dashboard-state error-state">
-    <AlertCircle size={48} />
-    <h3>Something went wrong</h3>
-    <p>{message}</p>
+  <div className="flex flex-col items-center justify-center h-[500px] text-red-500">
+    <AlertCircle size={48} className="mb-4" />
+    <h3 className="text-xl font-semibold text-slate-800">Something went wrong</h3>
+    <p className="text-slate-500 mb-6">{message}</p>
     {onRetry && (
-      <button onClick={onRetry} className="retry-btn">
+      <button onClick={onRetry} className="px-6 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors">
         Try Again
       </button>
     )}
@@ -63,9 +61,9 @@ const ErrorState: React.FC<ErrorStateProps> = ({ message, onRetry }) => (
 );
 
 const EmptyState: React.FC = () => (
-  <div className="dashboard-state empty-state">
-    <Database size={48} />
-    <h3>No Data Available</h3>
+  <div className="flex flex-col items-center justify-center h-[500px] text-slate-400">
+    <Database size={48} className="mb-4" />
+    <h3 className="text-xl font-semibold text-slate-700">No Data Available</h3>
     <p>No dashboard data found for the selected period</p>
   </div>
 );
@@ -205,17 +203,24 @@ const Dashboard: React.FC = () => {
     return <EmptyState />;
   }
 
-  // Check if data is essentially empty (all zeros)
-  // const isEmptyData = 
-  //   data.salesOverview.revenue.value === 0 &&
-  //   data.salesOverview.totalSales.value === 0 &&
-  //   data.salesOverview.driveThruOrders.value === 0 &&
-  //   data.driveThruCustomers.count === 0;
-
-  // if (isEmptyData) {
-  //   return <EmptyState />;
-  // }
-
+  // Validate essential data structure to prevent crashes
+  if (
+    !data.revenueTrend?.currentPeriod ||
+    !data.salesOverview ||
+    !data.upsellingPerformance ||
+    !data.driveThruCustomers?.lastSevenDays ||
+    !data.refunds ||
+    !data.peakHours ||
+    !data.recentOrders
+  ) {
+    console.error("Dashboard: Data structure is invalid or incomplete", data);
+    return (
+      <ErrorState
+        message="Received incomplete data from server."
+        onRetry={handleRetry}
+      />
+    );
+  }
 
   // ===== Line Chart (Revenue Trend) =====
   const lineData: ChartData<"line"> = {
@@ -232,10 +237,15 @@ const Dashboard: React.FC = () => {
           data.revenueTrend.currentPeriod.saturday,
           data.revenueTrend.currentPeriod.sunday,
         ],
-        borderColor: "#76B900",
-        backgroundColor: "rgba(118,185,0,0.2)",
+        borderColor: "#0d9488", // teal-600
+        backgroundColor: "rgba(13, 148, 136, 0.1)",
         fill: true,
         tension: 0.4,
+        pointBackgroundColor: "#0d9488",
+        pointBorderColor: "#fff",
+        pointBorderWidth: 2,
+        pointRadius: 4,
+        pointHoverRadius: 6,
       },
       {
         label: "Last Month",
@@ -248,10 +258,13 @@ const Dashboard: React.FC = () => {
           data.revenueTrend.lastPeriod.saturday,
           data.revenueTrend.lastPeriod.sunday,
         ],
-        borderColor: "#EC975F",
-        backgroundColor: "rgba(236,151,95,0.2)",
+        borderColor: "#cbd5e1", // slate-300
+        backgroundColor: "rgba(203, 213, 225, 0.1)",
         fill: true,
         tension: 0.4,
+        borderDash: [5, 5],
+        pointRadius: 0,
+        pointHoverRadius: 0,
       },
     ],
   };
@@ -261,8 +274,8 @@ const Dashboard: React.FC = () => {
     maintainAspectRatio: false,
     plugins: { legend: { display: false } },
     scales: {
-      x: { grid: { display: false }, ticks: { color: "#777" } },
-      y: { grid: { color: "#eee" }, ticks: { color: "#777" } },
+      x: { grid: { display: false }, ticks: { color: "#64748b" } },
+      y: { grid: { color: "#f1f5f9" }, ticks: { color: "#64748b" } },
     },
   };
 
@@ -272,27 +285,29 @@ const Dashboard: React.FC = () => {
     datasets: [
       {
         data: [data.upsellingPerformance.combos, 100 - data.upsellingPerformance.combos],
-        backgroundColor: ["#76B900", "#EFEFEF"],
+        backgroundColor: ["#0d9488", "#e2e8f0"], // teal-600, slate-200
         borderWidth: 0,
+        hoverOffset: 4,
       },
     ],
   };
 
   const doughnutUpsellOptions: ChartOptions<"doughnut"> = {
-    cutout: "50%",
+    cutout: "75%",
     plugins: {
       legend: {
         display: true,
         position: "bottom",
         labels: {
-          color: "#4B5563",
-          font: { size: 12 },
+          color: "#475569",
+          usePointStyle: true,
+          pointStyle: 'circle',
+          padding: 20,
         },
       },
     },
   };
 
-  // ===== Line Chart (Drive Thru) =====
   // ===== Line Chart (Drive Thru) =====
   const driveThruValues = [
     data.driveThruCustomers.lastSevenDays.monday,
@@ -313,14 +328,15 @@ const Dashboard: React.FC = () => {
       {
         label: "Customers",
         data: driveThruValues,
-        borderColor: "#76B900",
-        backgroundColor: "rgba(118,185,0,0.2)",
+        borderColor: "#0891b2", // cyan-600
+        backgroundColor: "rgba(8, 145, 178, 0.1)",
         fill: true,
         tension: 0.4,
-        pointBackgroundColor: "#76B900",
+        pointBackgroundColor: "#0891b2",
         pointBorderColor: "#ffffff",
         pointBorderWidth: 2,
         pointRadius: 4,
+        pointHoverRadius: 6,
       },
     ],
   };
@@ -331,6 +347,10 @@ const Dashboard: React.FC = () => {
     plugins: {
       legend: { display: false },
       tooltip: {
+        backgroundColor: '#1e293b',
+        padding: 12,
+        titleColor: '#f8fafc',
+        bodyColor: '#f8fafc',
         callbacks: {
           label: function (context) {
             return `Customers: ${context.parsed.y}`;
@@ -341,12 +361,12 @@ const Dashboard: React.FC = () => {
     scales: {
       x: {
         grid: { display: false },
-        ticks: { color: "#777" }
+        ticks: { color: "#64748b" }
       },
       y: {
-        grid: { color: "#eee" },
+        grid: { color: "#f1f5f9" },
         ticks: {
-          color: "#777",
+          color: "#64748b",
           precision: 0,
           stepSize: maxValue - minValue <= 10 ? 1 : Math.ceil((maxValue - minValue) / 10),
         },
@@ -363,21 +383,25 @@ const Dashboard: React.FC = () => {
     datasets: [
       {
         data: [data.refunds.percent, 100 - data.refunds.percent],
-        backgroundColor: ["#FF0000", "#FFBABA"],
+        backgroundColor: ["#ef4444", "#fee2e2"], // red-500, red-100
         borderWidth: 0,
+        hoverOffset: 4,
       },
     ],
   };
 
   const refundOptions: ChartOptions<"doughnut"> = {
-    cutout: "55%",
+    cutout: "75%",
     plugins: {
+      tooltip: { enabled: false }, // Disable tooltip for cleaner look if desired
       legend: {
         display: true,
         position: "bottom",
         labels: {
-          color: "#6B7280",
-          font: { size: 12 },
+          color: "#475569",
+          usePointStyle: true,
+          pointStyle: 'circle',
+          padding: 20,
         },
       },
     },
@@ -398,8 +422,9 @@ const Dashboard: React.FC = () => {
           data.peakHours.saturday,
           data.peakHours.sunday,
         ],
-        backgroundColor: "#76B900",
-        borderRadius: 8,
+        backgroundColor: "#0d9488", // teal-600
+        borderRadius: 4,
+        hoverBackgroundColor: "#0f766e",
       },
     ],
   };
@@ -409,8 +434,8 @@ const Dashboard: React.FC = () => {
     maintainAspectRatio: false,
     plugins: { legend: { display: false } },
     scales: {
-      x: { grid: { display: false }, ticks: { color: "#777" } },
-      y: { grid: { color: "#eee" }, ticks: { color: "#777" } },
+      x: { grid: { display: false }, ticks: { color: "#64748b" } },
+      y: { grid: { color: "#f1f5f9" }, ticks: { color: "#64748b" } },
     },
   };
 
@@ -446,336 +471,190 @@ const Dashboard: React.FC = () => {
     },
   ];
 
-
-
-  // // ===== Line Chart (Revenue Trend) =====
-  // const lineData: ChartData<"line"> = {
-  //   labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-  //   datasets: [
-  //     {
-  //       label: "Current",
-  //       data: [40, 60, 55, 70, 90, 50, 45],
-  //       borderColor: "#76B900",
-  //       backgroundColor: "rgba(118,185,0,0.2)",
-  //       fill: true,
-  //       tension: 0.4,
-  //     },
-  //     {
-  //       label: "Last Month",
-  //       data: [50, 55, 60, 45, 85, 40, 30],
-  //       borderColor: "#EC975F",
-  //       backgroundColor: "rgba(236,151,95,0.2)",
-  //       fill: true,
-  //       tension: 0.4,
-  //     },
-  //   ],
-  // };
-
-  // const lineOptions: ChartOptions<"line"> = {
-  //   responsive: true,
-  //   maintainAspectRatio: false,
-  //   plugins: { legend: { display: false } },
-  //   scales: {
-  //     x: { grid: { display: false }, ticks: { color: "#777" } },
-  //     y: { grid: { color: "#eee" }, ticks: { color: "#777" } },
-  //   },
-  // };
-
-  // // ===== Doughnut Chart (Upselling) =====
-  // const doughnutUpsellData: ChartData<"doughnut"> = {
-  //   labels: ["Combos", "Regular"],
-  //   datasets: [
-  //     {
-  //       data: [22, 78],
-  //       backgroundColor: [
-  //         getComputedStyle(document.documentElement).getPropertyValue("--secondary-color").trim() || "#76B900",
-  //         getComputedStyle(document.documentElement).getPropertyValue("--chart-bg").trim() || "#EFEFEF",
-  //       ],
-  //       borderWidth: 0,
-  //     },
-  //   ],
-  // };
-
-  // const doughnutUpsellOptions: ChartOptions<"doughnut"> = {
-  //   cutout: "50%",
-  //   plugins: {
-  //     legend: {
-  //       display: true,
-  //       position: "bottom",
-  //       labels: {
-  //         color: "#4B5563",
-  //         font: { size: 12 },
-  //         generateLabels: (chart) => {
-  //           const labels = chart.data.labels as string[];
-  //           const bgColors =
-  //             chart.data.datasets[0]
-  //               .backgroundColor as string[]; // ✅ safely cast as string[]
-
-  //           return labels.map((label, i) => ({
-  //             text: label,
-  //             fillStyle: bgColors[i] || "#ccc",
-  //           }));
-  //         },
-  //       },
-  //     },
-  //   },
-  // };
-
-  // // ===== Line Chart (Drive Thru) =====
-  // const driveThruData: ChartData<"line"> = {
-  //   labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-  //   datasets: [
-  //     {
-  //       label: "Customers",
-  //       data: [65, 45, 60, 75, 55, 80, 70],
-  //       borderColor: "#76B900",
-  //       backgroundColor: "rgba(118,185,0,0.2)",
-  //       fill: true,
-  //       tension: 0.4,
-  //     },
-  //   ],
-  // };
-
-  // const driveThruOptions: ChartOptions<"line"> = {
-  //   responsive: true,
-  //   maintainAspectRatio: false,
-  //   plugins: { legend: { display: false } },
-  //   scales: {
-  //     x: { grid: { display: false }, ticks: { color: "#777" } },
-  //     y: { grid: { color: "#eee" }, ticks: { color: "#777" } },
-  //   },
-  // };
-
-  // // ===== Doughnut Chart (Refunds) =====
-  // const refundData: ChartData<"doughnut"> = {
-  //   labels: ["Refunds", "Successful"],
-  //   datasets: [
-  //     {
-  //       data: [0.5, 99.5],
-  //       backgroundColor: [
-  //         getComputedStyle(document.documentElement)
-  //           .getPropertyValue("--danger-color")
-  //           .trim() || "#FF0000",
-  //         getComputedStyle(document.documentElement)
-  //           .getPropertyValue("--danger-light")
-  //           .trim() || "#FFBABA",
-  //       ],
-  //       borderWidth: 0,
-  //     },
-  //   ],
-  // };
-
-  // const refundOptions: ChartOptions<"doughnut"> = {
-  //   cutout: "55%",
-  //   plugins: {
-  //     legend: {
-  //       display: true,
-  //       position: "bottom",
-  //       labels: {
-  //         color: "#6B7280", // Tailwind gray-500
-  //         font: { size: 12 },
-  //         generateLabels: (chart) => {
-  //           const labels = chart.data.labels as string[];
-  //           const bgColors =
-  //             chart.data.datasets[0].backgroundColor as string[];
-  //           return labels.map((label, i) => ({
-  //             text: label,
-  //             fillStyle: bgColors[i] || "#ccc",
-  //           }));
-  //         },
-  //       },
-  //     },
-  //   },
-  // };
-  // // ===== Bar Chart (Peak Hours) =====
-  // const peakHoursData: ChartData<"bar"> = {
-  //   labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-  //   datasets: [
-  //     {
-  //       label: "Current",
-  //       data: [8, 12, 16, 14, 10, 18, 15, 19, 13, 10],
-  //       backgroundColor: "#76B900",
-  //       borderRadius: 8,
-  //     },
-  //   ],
-  // };
-
-  // const peakHoursOptions: ChartOptions<"bar"> = {
-  //   responsive: true,
-  //   maintainAspectRatio: false,
-  //   plugins: { legend: { display: false } },
-  //   scales: {
-  //     x: { grid: { display: false }, ticks: { color: "#777" } },
-  //     y: { grid: { color: "#eee" }, ticks: { color: "#777" } },
-  //   },
-  // };
-
-  // // ===== Orders Table =====
-  // const orders = [
-  //   { name: "Cheese Burger", orderNo: "#1756", customer: "Gerard Fabiano", price: "$6.20", status: "Received" },
-  //   { name: "Jalapeno Burger Combo", orderNo: "#2485", customer: "Nicole Foster", price: "$3.45", status: "In Kitchen" },
-  //   { name: "Vanilla Shake", orderNo: "#7490", customer: "Fernando Agaro", price: "$7.15", status: "Canceled" },
-  //   { name: "Cheese Burger",  orderNo: "#1756", customer: "Gerard Fabiano", price: "$6.20", status: "In Kitchen" },
-  //   { name: "Jalapeno Burger Combo", orderNo: "#2485", customer: "Nicole Foster", price: "$3.45", status: "In Kitchen" },
-  // ];
-
   return (
-    <div className="dashboard-container">
+    <div className="p-8 pb-24 bg-slate-50 min-h-screen">
       {/* Header */}
-      <div className="dashboard-header">
-        <h1>Sales Overview</h1>
-        <div className="date-filter-container">
+      <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+        <div>
+          <h1 className="text-3xl font-bold text-slate-800">Sales Overview</h1>
+          <p className="text-slate-500 mt-1">Welcome back, here's what's happening today.</p>
+        </div>
+
+        <div className="relative">
           <button
-            className="date-btn"
+            className="flex items-center gap-2 px-4 py-2.5 bg-white text-slate-700 rounded-xl shadow-sm border border-slate-200 hover:bg-slate-50 transition-colors text-sm font-medium"
             onClick={() => setShowDateDropdown(!showDateDropdown)}
           >
-            <Calendar size={16} />
+            <Calendar size={16} className="text-teal-600" />
             {dateRange.label}
-            <ChevronDown size={14} className={showDateDropdown ? 'rotate-180' : ''} />
+            <ChevronDown size={14} className={`text-slate-400 transition-transform ${showDateDropdown ? 'rotate-180' : ''}`} />
           </button>
 
           {showDateDropdown && (
-            <div className="date-dropdown">
+            <div className="absolute right-0 top-full mt-2 w-40 bg-white rounded-xl shadow-xl border border-slate-100 py-1 z-20 animate-in fade-in zoom-in-95 duration-200">
               <button
-                className={`dropdown-item ${dateRange.type === 'today' ? 'active' : ''}`}
+                className={`w-full text-left px-4 py-2 text-sm hover:bg-slate-50 transition-colors ${dateRange.type === 'today' ? 'text-teal-600 font-medium bg-teal-50' : 'text-slate-600'}`}
                 onClick={() => handleDateRangeSelect('today')}
               >
                 Today
               </button>
               <button
-                className={`dropdown-item ${dateRange.type === 'week' ? 'active' : ''}`}
+                className={`w-full text-left px-4 py-2 text-sm hover:bg-slate-50 transition-colors ${dateRange.type === 'week' ? 'text-teal-600 font-medium bg-teal-50' : 'text-slate-600'}`}
                 onClick={() => handleDateRangeSelect('week')}
               >
-                Week
+                This Week
               </button>
               <button
-                className={`dropdown-item ${dateRange.type === 'month' ? 'active' : ''}`}
+                className={`w-full text-left px-4 py-2 text-sm hover:bg-slate-50 transition-colors ${dateRange.type === 'month' ? 'text-teal-600 font-medium bg-teal-50' : 'text-slate-600'}`}
                 onClick={() => handleDateRangeSelect('month')}
               >
-                Month
+                This Month
               </button>
-              {/* <button 
-                className={`dropdown-item ${dateRange.type === 'custom' ? 'active' : ''}`}
-                onClick={() => handleDateRangeSelect('custom')}
-              >
-                Custom Range
-              </button> */}
             </div>
           )}
         </div>
       </div>
 
       {/* Top KPIs */}
-      <div className="kpi-grid">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         {kpiData.map((kpi, i) => (
-          <div key={i} className="kpi-card">
-            <div className="kpi-title">{kpi.title}</div>
-            <div className="kpi-row">
-              <div className="kpi-value">{kpi.value}</div>
-              <div className={`kpi-badge ${kpi.up ? "up" : "down"}`}>
+          <div key={i} className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+            <div className="text-sm font-medium text-slate-500 mb-4">{kpi.title}</div>
+            <div className="flex items-end justify-between mb-2">
+              <div className="text-3xl font-bold text-slate-800 tracking-tight">{kpi.value}</div>
+              <div className={`flex items-center gap-1 text-sm font-bold px-2 py-1 rounded-full ${kpi.up ? "text-teal-700 bg-teal-50" : "text-red-600 bg-red-50"}`}>
                 {kpi.up ? <TrendingUp size={14} /> : <TrendingDown size={14} />}
                 {kpi.change}
               </div>
             </div>
-            <p>{kpi.desc}</p>
+            <p className="text-xs text-slate-400">{kpi.desc}</p>
           </div>
         ))}
       </div>
 
       {/* Charts Section */}
-      <div className="chart-grid">
-        <div className="chart-card revenue-card">
-          <div className="chart-header">
-            <h3>Revenue Trend</h3>
-            <div className="chart-legend">
-              <span className="dot green"></span> Current
-              <span className="dot orange"></span> Last Month
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+        {/* Revenue Trend - Spans 2 columns */}
+        <div className="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="text-lg font-bold text-slate-800">Revenue Trend</h3>
+            <div className="flex items-center gap-4 text-xs font-medium">
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-teal-600"></span>
+                <span className="text-slate-600">Current</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+                <span className="text-slate-600">Last Month</span>
+              </div>
             </div>
           </div>
-          <div className="chart-container">
+          <div className="h-[300px] w-full">
             <Line data={lineData} options={lineOptions} />
           </div>
         </div>
 
-        <div className="chart-card upsell-card center">
-          <h3>Upselling Performance</h3>
-          <div className="doughnut-container">
+        {/* Upsell Card */}
+        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center justify-center">
+          <h3 className="text-lg font-bold text-slate-800 mb-6 w-full text-left">Upselling Performance</h3>
+          <div className="relative h-[220px] w-[220px]">
             <Doughnut data={doughnutUpsellData} options={doughnutUpsellOptions} />
-            <div className="doughnut-center">
-              <span className="main">{data.upsellingPerformance.combos}%</span>
-              <span className="sub">Combos</span>
+            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+              <span className="text-3xl font-bold text-slate-800">{data.upsellingPerformance.combos}%</span>
+              <span className="text-xs text-slate-500 font-medium uppercase tracking-wider">Combos</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* Drive Thru + Refund + Peak Hours */}
-      <div className="chart-grid drive-grid">
-        <div className="chart-card drive-card">
-          <h3>Drive Thru Customers</h3>
-          <div className="chart-container">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        {/* Drive Thru Customers */}
+        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+          <h3 className="text-lg font-bold text-slate-800 mb-2">Drive Thru Traffic</h3>
+          <p className="text-sm text-slate-500 mb-6">Weekly customer overview</p>
+          <div className="h-[200px] w-full">
             <Line data={driveThruData} options={driveThruOptions} />
           </div>
-          <p className="chart-footer">
-            <span>{data.driveThruCustomers.count.toLocaleString()}</span> Customers
+          <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
+            <span className="text-slate-500 text-sm">Total Visitors</span>
+            <span className="text-xl font-bold text-cyan-600">{data.driveThruCustomers.count.toLocaleString()}</span>
+          </div>
+        </div>
+
+        {/* Refunds */}
+        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center justify-center">
+          <h3 className="text-lg font-bold text-slate-800 mb-4 w-full text-left">Refunds & Cancellation</h3>
+          <div className="relative h-[180px] w-[180px] mb-4">
+            <Doughnut data={refundData} options={refundOptions} />
+            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+              <span className="text-2xl font-bold text-red-500">{data.refunds.percent}%</span>
+              <span className="text-[10px] text-slate-400 font-medium uppercase mt-0.5">Rate</span>
+            </div>
+          </div>
+          <p className="text-sm text-slate-500">
+            Total Refunded: <span className="font-bold text-slate-800">{formatCurrency(data.refunds.totalAmount)}</span>
           </p>
         </div>
 
-        <div className="chart-card refund-card center">
-          <h3>Refunds/Cancellation</h3>
-          <div className="doughnut-container">
-            <Doughnut data={refundData} options={refundOptions} />
-            <div className="doughnut-center">
-              <span className="refund">{data.refunds.percent}%</span>
-            </div>
+        {/* Peak Hours */}
+        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="text-lg font-bold text-slate-800">Peak Hours</h3>
           </div>
-          <p>Total Refund: {formatCurrency(data.refunds.totalAmount)}</p>
-        </div>
-
-        <div className="chart-card peak-card">
-          <div className="chart-header">
-            <h3>Peak Hours</h3>
-            <div className="chart-legend">
-              <span className="dot green"></span> Current
-            </div>
-          </div>
-          <div className="chart-container">
+          <div className="h-[200px] w-full">
             <Bar data={peakHoursData} options={peakHoursOptions} />
+          </div>
+          <div className="mt-6 flex items-center gap-2 text-sm text-slate-500">
+            <div className="w-2 h-2 rounded-full bg-teal-600"></div>
+            <span>Busiest: <b>12:00 PM - 2:00 PM</b></span>
           </div>
         </div>
       </div>
 
-
       {/* Orders Table */}
-      <div className="table-card">
-        <div className="table-header">
-          <h3>Recently Placed Orders</h3>
-          <button className="date-btn">
-            Last 24h <ChevronDown size={14} />
+      <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div className="p-6 border-b border-slate-100 flex items-center justify-between">
+          <h3 className="text-lg font-bold text-slate-800">Recent Orders</h3>
+          <button className="text-sm font-medium text-teal-600 hover:text-teal-700 hover:bg-teal-50 px-3 py-1.5 rounded-lg transition-colors flex items-center gap-1">
+            View All <ChevronDown size={14} className="-rotate-90" />
           </button>
-
         </div>
-        <div className="table-wrapper">
-          <table>
-            <thead>
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead className="bg-slate-50">
               <tr>
-                <th>Order Name</th>
-                <th>Customer</th>
-                <th>Price</th>
-                <th>Status</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Order Details</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Customer</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Price</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Status</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="divide-y divide-slate-100">
               {data.recentOrders.map((order, i) => (
-                <tr key={i}>
-                  <td>
-                    {order.name} <br />
-                    <span className="orderNo">{order.orderNumber}</span>
+                <tr key={i} className="hover:bg-slate-50/50 transition-colors">
+                  <td className="px-6 py-4">
+                    <div className="font-medium text-slate-800">{order.name}</div>
+                    <div className="text-xs text-slate-400 mt-0.5">{order.orderNumber}</div>
                   </td>
-                  <td>{order.customer}</td>
-                  <td>{formatCurrency(order.price)}</td>
-                  <td>
-                    <span className={`status ${order.status.toLowerCase().replace(" ", "-")}`}>
+                  <td className="px-6 py-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-xs font-bold">
+                        {order.customer?.charAt(0) || "?"}
+                      </div>
+                      <span className="text-sm text-slate-600 font-medium">{order.customer || "Unknown"}</span>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4">
+                    <span className="font-bold text-slate-700">{formatCurrency(order.price)}</span>
+                  </td>
+                  <td className="px-6 py-4">
+                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border
+                      ${order.status === "Received" ? "bg-blue-50 text-blue-700 border-blue-100" :
+                        order.status === "In Kitchen" ? "bg-amber-50 text-amber-700 border-amber-100" :
+                          order.status === "Completed" ? "bg-green-50 text-green-700 border-green-100" :
+                            "bg-slate-100 text-slate-600 border-slate-200"
+                      }`}>
                       {order.status}
                     </span>
                   </td>

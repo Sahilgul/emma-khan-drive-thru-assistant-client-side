@@ -14,7 +14,7 @@ export default {
         "emma-card-foreground": "hsl(var(--emma-card-foreground))",
         "emma-popover": "hsl(var(--emma-popover))",
         "emma-popover-foreground": "hsl(var(--emma-popover-foreground))",
-        "emma-primary": "#6366F1", // Indigo 500
+        "emma-primary": "#0D9488", // Teal 600
         "emma-primary-foreground": "#ffffff",
         "emma-secondary": "#1E293B", // Slate 800
         "emma-secondary-foreground": "#F8FAFC",
@@ -26,7 +26,7 @@ export default {
         "emma-destructive-foreground": "#ffffff",
         "emma-border": "#334155",
         "emma-input": "#334155",
-        "emma-ring": "#6366F1",
+        "emma-ring": "#0D9488",
       },
       borderRadius: {
         lg: "var(--radius)",

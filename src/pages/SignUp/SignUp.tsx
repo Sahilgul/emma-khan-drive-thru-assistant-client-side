@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { showSuccess, showError, showLoading } from "../../utils/alert";
-import "./SignUp.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faEyeSlash, faCheckCircle, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import { authService } from "../../services/authService";
+import logo from "/images/brand-logo.png";
 
 const SignUp: React.FC = () => {
   const navigate = useNavigate();
@@ -39,42 +39,42 @@ const SignUp: React.FC = () => {
   const evaluatePasswordStrength = (password: string) => {
     if (!password) return setPasswordStrength({ label: "", color: "", level: 0 });
 
-    let strength = { label: "Weak", color: "var(--danger-color)", level: 33 };
+    let strength = { label: "Weak", color: "bg-red-500", level: 33 };
 
     const mediumRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,}$/;
     const strongRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
 
     if (strongRegex.test(password))
-      strength = { label: "Strong", color: "var(--secondary-color)", level: 100 };
+      strength = { label: "Strong", color: "bg-teal-500", level: 100 };
     else if (mediumRegex.test(password))
-      strength = { label: "Medium", color: "var(--secondary-hover)", level: 66 };
+      strength = { label: "Medium", color: "bg-amber-500", level: 66 };
 
     setPasswordStrength(strength);
   };
 
   const handleSignUp = async () => {
     const { firstName, lastName, email, companyName, password, confirmPassword } = formData;
-  
+
     if (!firstName || !lastName || !email || !companyName || !password || !confirmPassword) {
       showError("Please fill in all fields!");
       return;
     }
-  
+
     if (!validateEmail(email)) {
       showError("Please enter a valid email address!");
       return;
     }
-  
+
     if (password.length < 8) {
       showError("Password must be at least 8 characters long!");
       return;
     }
-  
+
     if (password !== confirmPassword) {
       showError("Passwords do not match!");
       return;
     }
-  
+
     try {
       setLoading(true);
       showLoading("Creating your account...");
@@ -83,7 +83,7 @@ const SignUp: React.FC = () => {
 
       showSuccess("Account created successfully! Please sign in.");
       setTimeout(() => navigate("/signin"), 1200);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.error("❌ Signup error:", error);
       const message =
@@ -95,167 +95,189 @@ const SignUp: React.FC = () => {
   };
 
   return (
-    <div className="signup-container">
-      <div className="signup-card">
-        <div className="logo"></div>
+    <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-teal-50 via-cyan-50 to-blue-50 relative overflow-hidden py-10">
+      {/* Animated Background Orbs */}
+      <div className="absolute top-20 left-10 w-96 h-96 bg-teal-200 rounded-full opacity-20 blur-3xl animate-pulse" />
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-200 rounded-full opacity-20 blur-3xl animate-pulse delay-1000" />
 
-        <h2 className="title">
-          Create your <span className="highlight"></span> account
-        </h2>
-        <p className="subtitle">Fill in the details to get started</p>
-
-        <div className="row">
-          <div className="field">
-            <label>First Name</label>
-            <input
-              type="text"
-              name="firstName"
-              placeholder="John"
-              value={formData.firstName}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="field">
-            <label>Last Name</label>
-            <input
-              type="text"
-              name="lastName"
-              placeholder="Doe"
-              value={formData.lastName}
-              onChange={handleChange}
-            />
+      <div className="w-full max-w-2xl bg-white rounded-3xl shadow-2xl p-8 md:p-10 relative z-10 mx-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="flex justify-center mb-8">
+          <div className="w-16 h-16 bg-teal-50 rounded-2xl flex items-center justify-center shadow-sm">
+            <img src={logo} alt="Logo" className="w-10 h-auto" />
           </div>
         </div>
 
-        <div className="row">
-          <div className="field">
-            <label>Email</label>
-            <input
-              type="email"
-              name="email"
-              placeholder="john@company.com"
-              value={formData.email}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="field">
-            <label>Company Name</label>
-            <input
-              type="text"
-              name="companyName"
-              placeholder="Company Inc."
-              value={formData.companyName}
-              onChange={handleChange}
-            />
-          </div>
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-2">
+            Create your <span className="text-teal-600">account</span>
+          </h2>
+          <p className="text-gray-500">Fill in the details to get started</p>
         </div>
 
-        <div className="row">
-        <div className="field password">
-            <label>Password</label>
-            <input
-            type={showPassword ? "text" : "password"}
-            name="password"
-            placeholder="••••••••"
-            value={formData.password}
-            onChange={handleChange}
-            onFocus={() => evaluatePasswordStrength(formData.password)}
-            onBlur={() => setPasswordStrength({ label: "", color: "", level: 0 })}
-            />
-            <span
-            className="toggle-visibility"
-            onClick={() => setShowPassword(!showPassword)}
-            >
-            <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
-            </span>
-        </div>
-
-        <div className="field password">
-            <label>Confirm Password</label>
-            <input
-            type={showConfirmPassword ? "text" : "password"}
-            name="confirmPassword"
-            placeholder="••••••••"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            />
-            <span
-            className="toggle-visibility"
-            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-            >
-            <FontAwesomeIcon icon={showConfirmPassword ? faEyeSlash : faEye} />
-            </span>
-        </div>
-        </div>
-        <div className="row">
-            <div className="tooltip">
-            {passwordStrength.label && (
-                <>
-                    <p
-                    className="password-strength-text"
-                    style={{ color: passwordStrength.color }}
-                    >
-                    {passwordStrength.label} password
-                    </p>
-                    <div className="password-strength-bar">
-                    <div
-                        className="password-strength-fill"
-                        style={{
-                        width: `${passwordStrength.level}%`,
-                        backgroundColor: passwordStrength.color,
-                        }}
-                    ></div>
-                    </div>
-                </>
-                )}
-
-            {/* 💬 Tooltip with live tips */}
-            
-           
-            {formData.password && (
-            <div>
-                 <h4>Password must be!</h4>
-                 <div className="password-tips">
-                 <ul>
-                <li className={/[A-Z]/.test(formData.password) ? "met" : "unmet"}>
-                    Include at least one uppercase letter
-                </li>
-                <li className={/[a-z]/.test(formData.password) ? "met" : "unmet"}>
-                    Include lowercase letters
-                </li>
-                <li className={/\d/.test(formData.password) ? "met" : "unmet"}>
-                    Include at least one number
-                </li>
-                <li className={/[!@#$%^&*]/.test(formData.password) ? "met" : "unmet"}>
-                    Include a special character (!@#$%^&*)
-                </li>
-                <li className={formData.password.length >= 8 ? "met" : "unmet"}>
-                    At least 8 characters long
-                </li>
-                </ul>
-                 </div>
-                
+        <div className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-gray-700 ml-1">First Name</label>
+              <input
+                type="text"
+                name="firstName"
+                placeholder="John"
+                value={formData.firstName}
+                onChange={handleChange}
+                className="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10 outline-none transition-all text-gray-700 bg-gray-50/50 hover:bg-white"
+              />
             </div>
-            )}
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-gray-700 ml-1">Last Name</label>
+              <input
+                type="text"
+                name="lastName"
+                placeholder="Doe"
+                value={formData.lastName}
+                onChange={handleChange}
+                className="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10 outline-none transition-all text-gray-700 bg-gray-50/50 hover:bg-white"
+              />
             </div>
-            <div className="tooltip"></div>
-        </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-gray-700 ml-1">Email</label>
+              <input
+                type="email"
+                name="email"
+                placeholder="john@company.com"
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10 outline-none transition-all text-gray-700 bg-gray-50/50 hover:bg-white"
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-gray-700 ml-1">Company Name</label>
+              <input
+                type="text"
+                name="companyName"
+                placeholder="Company Inc."
+                value={formData.companyName}
+                onChange={handleChange}
+                className="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10 outline-none transition-all text-gray-700 bg-gray-50/50 hover:bg-white"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-gray-700 ml-1">Password</label>
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  placeholder="••••••••"
+                  value={formData.password}
+                  onChange={handleChange}
+                  onFocus={() => evaluatePasswordStrength(formData.password)}
+                  className="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10 outline-none transition-all text-gray-700 bg-gray-50/50 hover:bg-white pr-12"
+                />
+                <span
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-teal-600 cursor-pointer transition-colors p-1"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+                </span>
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-gray-700 ml-1">Confirm Password</label>
+              <div className="relative">
+                <input
+                  type={showConfirmPassword ? "text" : "password"}
+                  name="confirmPassword"
+                  placeholder="••••••••"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10 outline-none transition-all text-gray-700 bg-gray-50/50 hover:bg-white pr-12"
+                />
+                <span
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-teal-600 cursor-pointer transition-colors p-1"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                >
+                  <FontAwesomeIcon icon={showConfirmPassword ? faEyeSlash : faEye} />
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Password Strength & Tips */}
+          {passwordStrength.label && (
+            <div className="bg-slate-50 p-4 rounded-xl border border-slate-100">
+              <div className="flex items-center justify-between mb-2">
+                <span className={`text-xs font-bold uppercase tracking-wider ${passwordStrength.color.replace('bg-', 'text-')}`}>
+                  {passwordStrength.label} Password
+                </span>
+                <span className="text-xs text-slate-400">{passwordStrength.level}%</span>
+              </div>
+              <div className="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
+                <div
+                  className={`h-full ${passwordStrength.color} transition-all duration-300`}
+                  style={{ width: `${passwordStrength.level}%` }}
+                ></div>
+              </div>
+
+              {formData.password && (
+                <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  <div className={`flex items-center gap-2 text-xs ${/[A-Z]/.test(formData.password) ? "text-teal-600" : "text-slate-400"}`}>
+                    <FontAwesomeIcon icon={/[A-Z]/.test(formData.password) ? faCheckCircle : faTimesCircle} />
+                    One uppercase letter
+                  </div>
+                  <div className={`flex items-center gap-2 text-xs ${/[a-z]/.test(formData.password) ? "text-teal-600" : "text-slate-400"}`}>
+                    <FontAwesomeIcon icon={/[a-z]/.test(formData.password) ? faCheckCircle : faTimesCircle} />
+                    One lowercase letter
+                  </div>
+                  <div className={`flex items-center gap-2 text-xs ${/\d/.test(formData.password) ? "text-teal-600" : "text-slate-400"}`}>
+                    <FontAwesomeIcon icon={/\d/.test(formData.password) ? faCheckCircle : faTimesCircle} />
+                    One number
+                  </div>
+                  <div className={`flex items-center gap-2 text-xs ${/[!@#$%^&*]/.test(formData.password) ? "text-teal-600" : "text-slate-400"}`}>
+                    <FontAwesomeIcon icon={/[!@#$%^&*]/.test(formData.password) ? faCheckCircle : faTimesCircle} />
+                    One special char
+                  </div>
+                  <div className={`flex items-center gap-2 text-xs ${formData.password.length >= 8 ? "text-teal-600" : "text-slate-400"}`}>
+                    <FontAwesomeIcon icon={formData.password.length >= 8 ? faCheckCircle : faTimesCircle} />
+                    Min 8 characters
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
 
 
-        <button className="signin-btn mt-4" onClick={handleSignUp} disabled={loading}>
-          {loading ? "Please wait..." : "Create Account"}
-        </button>
-
-        <p className="subtitle" style={{ marginTop: "16px" }}>
-          Already have an account?{" "}
-          <span
-            className="highlight"
-            style={{ cursor: "pointer" }}
-            onClick={() => navigate("/")}
+          <button
+            onClick={handleSignUp}
+            disabled={loading}
+            className="w-full py-4 bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-600 hover:to-cyan-700 text-white rounded-xl font-bold text-lg shadow-lg shadow-teal-500/20 hover:shadow-teal-500/30 transform hover:-translate-y-0.5 transition-all disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none mt-2"
           >
-            Sign in
-          </span>
-        </p>
+            {loading ? (
+              <span className="flex items-center justify-center gap-2">
+                <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Creating Account...
+              </span>
+            ) : "Create Account"}
+          </button>
+
+          <p className="text-center text-sm font-medium text-gray-500">
+            Already have an account?{" "}
+            <span
+              className="text-teal-600 hover:text-teal-700 cursor-pointer hover:underline transition-colors"
+              onClick={() => navigate("/signin")}
+            >
+              Sign in
+            </span>
+          </p>
+        </div>
       </div>
     </div>
   );

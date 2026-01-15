@@ -38,12 +38,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         toggleCollapse={toggleCollapse}
       />
 
-      <div className={`flex flex-col flex-1 transition-all duration-300 ${
-          isMobile
-            ? 'ml-0'
-            : (sidebarCollapsed ? 'lg:ml-20' : 'lg:ml-80')
-        }`}
-      >
+      <div className="flex flex-col flex-1 min-w-0 transition-all duration-300">
         <Topbar onMenuClick={toggleSidebar} sidebarOpen={sidebarOpen} />
         <main className="flex-1 overflow-auto">{children}</main>
       </div>

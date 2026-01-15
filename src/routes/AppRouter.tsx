@@ -25,6 +25,7 @@ import Notification from "../pages/Notification/Notification";
 import { ToastContainer } from "../components/ToastContainer";
 import ProtectedRoute from "./ProtectedRoute";
 import EmmaBotWrapper from "../EmmaBot/EmmaBotWrapper";
+import ErrorBoundary from "../components/ErrorBoundary";
 
 const AppRouter = () => {
   return (
@@ -41,9 +42,11 @@ const AppRouter = () => {
           path="/"
           element={
             <ProtectedRoute>
-              <MainLayout>
-                <Outlet /> {/* 👈 Explicitly pass Outlet as children */}
-              </MainLayout>
+              <ErrorBoundary>
+                <MainLayout>
+                  <Outlet /> {/* 👈 Explicitly pass Outlet as children */}
+                </MainLayout>
+              </ErrorBoundary>
             </ProtectedRoute>
           }
         >

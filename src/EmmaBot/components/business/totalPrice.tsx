@@ -17,7 +17,7 @@ export const TotalPrice: React.FC<TotalPriceProps> = ({
   showBreakdown = false,
 }) => {
   return (
-    <div className={cn('bg-emma-primary text-white p-6 rounded', className)}>
+    <div className={cn('bg-emma-primary text-white p-2 rounded h-[50px] 2xl:h-[70px] flex items-center justify-center shrink-0 overflow-hidden', className)}>
       {/* Main Total */}
       <div className="text-center">
         <H2 className="2xl:text-5xl font-bold">

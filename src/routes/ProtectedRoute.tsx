@@ -21,11 +21,7 @@ const ProtectedRoute: React.FC<{ children?: React.ReactNode }> = ({ children }) 
   }
 
   // Render protected layout or nested routes
-  return children ? (
-    React.cloneElement(children as React.ReactElement, {}, <Outlet />)
-  ) : (
-    <Outlet />
-  );
+  return children ? <>{children}</> : <Outlet />;
 };
 
 export default ProtectedRoute;
