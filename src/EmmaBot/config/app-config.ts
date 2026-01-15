@@ -20,8 +20,8 @@ export interface AppConfig {
 }
 
 export const APP_CONFIG_DEFAULTS: AppConfig = {
-  companyName: 'Emma-Khan-Client-Side',
-  pageTitle: 'Emma Khan - Drive Thru Assistant',
+  companyName: 'Emma-Client-Side',
+  pageTitle: 'Emma - Drive Thru Assistant',
   pageDescription: 'Your premium AI drive-thru assistant',
 
   supportsChatInput: true,

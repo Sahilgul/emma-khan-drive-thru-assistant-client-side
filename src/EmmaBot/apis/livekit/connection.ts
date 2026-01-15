@@ -30,7 +30,7 @@ export interface ConnectionRequest {
  */
 import { createApiClient } from '@emma/lib/api';
 
-const apiClient = createApiClient(import.meta.env.VITE_SERVER_URL);
+const apiClient = createApiClient(import.meta.env.VITE_New_SERVER_URL);
 
 export async function fetchConnectionDetails(
   request: ConnectionRequest = {}
@@ -46,7 +46,7 @@ export async function fetchConnectionDetails(
     }
 
     // Send request with X-User-Id header for backend authentication
-    const data = await apiClient.post<ConnectionDetails>('/token/', request, {
+    const data = await apiClient.post<ConnectionDetails>('/token/token-emma-khan', request, {
       headers: {
         'X-User-Id': userId,
       },

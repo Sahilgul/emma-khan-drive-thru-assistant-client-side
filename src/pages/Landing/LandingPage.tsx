@@ -160,7 +160,7 @@ const LandingPage: React.FC = () => {
             <header className={`navbar ${scrolled ? "scrolled" : ""}`}>
                 <div className="navbar-inner">
                     <div className="landing-logo">
-                        <span className="logo-text">Emma Khan</span>
+                        <span className="logo-text">Emma</span>
                         <span className="logo-badge">AI</span>
                     </div>
 
@@ -210,7 +210,7 @@ const LandingPage: React.FC = () => {
                         </div>
 
                         <h1 className="hero-title">
-                            Meet <span className="gradient-text">Emma Khan</span>
+                            Meet <span className="gradient-text">Emma</span>
                             <br />
                             Your AI Order Assistant
                         </h1>
@@ -279,7 +279,7 @@ const LandingPage: React.FC = () => {
                                 <div className="avatar-glow" />
                                 <img
                                     src={emmaHero}
-                                    alt="Emma Khan - AI Assistant"
+                                    alt="Emma - AI Assistant"
                                     className="emma-avatar"
                                 />
                                 <div className="avatar-ring" />
@@ -346,11 +346,11 @@ const LandingPage: React.FC = () => {
                             <div className="showcase-card">
                                 <img
                                     src={emmaHero}
-                                    alt="Emma Khan"
+                                    alt="Emma"
                                     className="showcase-avatar"
                                 />
                                 <div className="showcase-info">
-                                    <h4>Emma Khan</h4>
+                                    <h4>Emma</h4>
                                     <p>Your AI Assistant</p>
                                 </div>
                             </div>
@@ -506,7 +506,7 @@ const LandingPage: React.FC = () => {
                 <div className="footer-content">
                     <div className="footer-brand">
                         <div className="landing-logo">
-                            <span className="logo-text">Emma Khan</span>
+                            <span className="logo-text">Emma</span>
                             <span className="logo-badge">AI</span>
                         </div>
                         <p>AI-powered drive-thru assistant for faster, smarter restaurants.</p>
@@ -536,7 +536,7 @@ const LandingPage: React.FC = () => {
 
                 <div className="footer-bottom">
                     <p>
-                        © {new Date().getFullYear()} Emma Khan AI. All rights reserved.
+                        © {new Date().getFullYear()} Emma AI. All rights reserved.
                     </p>
                 </div>
             </footer>
