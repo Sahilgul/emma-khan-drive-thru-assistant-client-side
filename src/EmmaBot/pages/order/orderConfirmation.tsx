@@ -72,7 +72,7 @@ export const OrderConfirmation = ({
   return (
     <div className="h-svh w-full overflow-hidden">
       {/* Main Content */}
-      <div className="p-2 2xl:p-4 flex flex-col gap-3 2xl:gap-5 transition-all duration-500 h-full relative overflow-hidden isolate">
+      <div className="p-3 sm:p-5 lg:p-6 flex flex-col gap-3 lg:gap-5 transition-all duration-500 h-full relative overflow-hidden isolate">
         {/* Background Image from API - Centered */}
         {backgroundImage && (
           <div className="absolute inset-0 w-full h-full overflow-hidden -z-10">

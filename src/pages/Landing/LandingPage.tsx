@@ -154,16 +154,31 @@ const LandingPage: React.FC = () => {
                             {menuOpen ? <X size={26} /> : <Menu size={26} />}
                         </button>
 
-                        <nav className={`${menuOpen ? 'flex' : 'hidden'} lg:flex absolute lg:relative top-full left-0 right-0 lg:top-auto flex-col lg:flex-row gap-2 lg:gap-8 bg-white lg:bg-transparent p-6 lg:p-0 shadow-lg lg:shadow-none`}>
+                        <nav className={`${menuOpen ? 'flex' : 'hidden'} lg:flex absolute lg:relative top-full left-0 right-0 lg:top-auto flex-col lg:flex-row gap-4 lg:gap-8 bg-white lg:bg-transparent p-6 lg:p-0 shadow-xl lg:shadow-none border-t lg:border-none border-gray-100`}>
                             {navItems.map((item) => (
                                 <a
                                     key={item}
                                     onClick={() => scrollToSection(item.toLowerCase().replace(/\s+/g, "-"))}
-                                    className="text-gray-700 hover:text-teal-600 font-medium transition-colors cursor-pointer"
+                                    className="text-gray-700 hover:text-teal-600 font-semibold lg:font-medium transition-colors cursor-pointer py-2 lg:py-0 border-b lg:border-none border-gray-50 last:border-none"
                                 >
                                     {item}
                                 </a>
                             ))}
+                            <div className="flex flex-col gap-4 mt-4 lg:hidden">
+                                <button
+                                    className="flex items-center justify-center gap-2 px-4 py-3 text-teal-600 bg-teal-50 rounded-lg font-medium transition-colors"
+                                    onClick={() => { navigate("/signin"); setMenuOpen(false); }}
+                                >
+                                    <User size={18} /> Login
+                                </button>
+                                <button
+                                    className="flex items-center justify-center gap-2 px-6 py-3 bg-teal-600 text-white rounded-lg font-medium transition-all shadow-lg"
+                                    onClick={() => scrollToSection("contact")}
+                                >
+                                    Get Started
+                                    <ArrowRight size={18} />
+                                </button>
+                            </div>
                         </nav>
 
                         <div className="hidden lg:flex items-center gap-4">
@@ -195,7 +210,7 @@ const LandingPage: React.FC = () => {
                                 <span className="text-sm font-semibold">AI-Powered Drive-Thru</span>
                             </div>
 
-                            <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
                                 Meet <span className="bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">Emma</span>
                                 <br />
                                 Your AI Order Assistant
@@ -207,14 +222,14 @@ const LandingPage: React.FC = () => {
 
                             <div className="flex flex-wrap gap-4">
                                 <button
-                                    className="flex items-center gap-2 px-8 py-4 bg-teal-600 hover:bg-teal-700 text-white rounded-lg font-semibold text-lg transition-all shadow-xl hover:shadow-2xl hover:scale-105"
+                                    className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-8 py-4 bg-teal-600 hover:bg-teal-700 text-white rounded-lg font-semibold text-lg transition-all shadow-xl hover:shadow-2xl hover:scale-105"
                                     onClick={() => scrollToSection("contact")}
                                 >
                                     Appointment
                                     <ArrowRight size={20} />
                                 </button>
                                 <button
-                                    className="flex items-center gap-2 px-8 py-4 bg-white hover:bg-gray-50 text-teal-600 rounded-lg font-semibold text-lg transition-all shadow-lg border-2 border-teal-200"
+                                    className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-8 py-4 bg-white hover:bg-gray-50 text-teal-600 rounded-lg font-semibold text-lg transition-all shadow-lg border-2 border-teal-200"
                                     onClick={() => scrollToSection("how-it-works")}
                                 >
                                     <Play size={20} />
@@ -222,19 +237,19 @@ const LandingPage: React.FC = () => {
                                 </button>
                             </div>
 
-                            <div className="flex flex-wrap gap-8 pt-4">
+                            <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-4 sm:gap-8 pt-4">
                                 <div>
-                                    <div className="text-3xl font-bold text-teal-600">40%</div>
+                                    <div className="text-2xl md:text-3xl font-bold text-teal-600">40%</div>
                                     <div className="text-sm text-gray-600">Faster Orders</div>
                                 </div>
-                                <div className="w-px bg-gray-300" />
+                                <div className="hidden sm:block w-px bg-gray-300" />
                                 <div>
-                                    <div className="text-3xl font-bold text-teal-600">99.9%</div>
+                                    <div className="text-2xl md:text-3xl font-bold text-teal-600">99.9%</div>
                                     <div className="text-sm text-gray-600">Accuracy</div>
                                 </div>
-                                <div className="w-px bg-gray-300" />
-                                <div>
-                                    <div className="text-3xl font-bold text-teal-600">24/7</div>
+                                <div className="hidden sm:block w-px bg-gray-300" />
+                                <div className="col-span-2 sm:col-span-1">
+                                    <div className="text-2xl md:text-3xl font-bold text-teal-600">24/7</div>
                                     <div className="text-sm text-gray-600">Available</div>
                                 </div>
                             </div>
@@ -257,8 +272,8 @@ const LandingPage: React.FC = () => {
                                     <MessageSquare size={24} className="text-blue-600" />
                                 </div>
 
-                                <div className="relative">
-                                    <div className="w-72 h-[32rem] mx-auto bg-gradient-to-br from-teal-400 to-cyan-500 rounded-[2rem] flex items-center justify-center shadow-xl overflow-hidden ring-4 ring-white relative z-10 p-2">
+                                <div className="relative mt-12 lg:mt-0">
+                                    <div className="w-64 sm:w-72 h-[28rem] sm:h-[32rem] mx-auto bg-gradient-to-br from-teal-400 to-cyan-500 rounded-[2rem] flex items-center justify-center shadow-xl overflow-hidden ring-4 ring-white relative z-10 p-2">
                                         <div className="w-full h-full bg-gradient-to-br from-teal-600 to-cyan-700 rounded-[1.5rem] flex items-center justify-center overflow-hidden">
                                             <img
                                                 src={emmaPortrait}
@@ -283,7 +298,7 @@ const LandingPage: React.FC = () => {
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-16">
                         <span className="inline-block px-4 py-2 bg-teal-100 text-teal-700 rounded-full text-sm font-semibold mb-4">How It Works</span>
-                        <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
                             From Hello to <span className="bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">Served</span> in Seconds
                         </h2>
                         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -291,7 +306,7 @@ const LandingPage: React.FC = () => {
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         {features.map((feature, index) => {
                             const Icon = feature.icon;
                             return (
@@ -344,7 +359,7 @@ const LandingPage: React.FC = () => {
 
                         <div className="space-y-6">
                             <span className="inline-block px-4 py-2 bg-teal-100 text-teal-700 rounded-full text-sm font-semibold">Why Choose Us</span>
-                            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900">
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
                                 Why Restaurants <span className="bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">Love Emma</span>
                             </h2>
                             <p className="text-xl text-gray-600">
@@ -378,7 +393,7 @@ const LandingPage: React.FC = () => {
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <div className="text-white space-y-6">
                             <span className="inline-block px-4 py-2 bg-white/20 rounded-full text-sm font-semibold">Get Started</span>
-                            <h2 className="text-4xl lg:text-5xl font-bold">
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
                                 Ready to Transform Your Drive-Thru?
                             </h2>
                             <p className="text-xl text-teal-50">
@@ -401,8 +416,8 @@ const LandingPage: React.FC = () => {
                             </div>
                         </div>
 
-                        <form ref={formRef} className="bg-white rounded-2xl p-8 shadow-2xl space-y-4">
-                            <div className="grid grid-cols-2 gap-4">
+                        <form ref={formRef} className="bg-white rounded-2xl p-6 sm:p-8 shadow-2xl space-y-4">
+                            <div className="grid sm:grid-cols-2 gap-4">
                                 <div>
                                     <label className="block text-sm font-semibold text-gray-700 mb-2">First Name</label>
                                     <input
@@ -475,9 +490,9 @@ const LandingPage: React.FC = () => {
             </section >
 
             {/* Footer */}
-            < footer className="bg-white py-12 px-6 border-t border-gray-200" >
+            <footer className="bg-white py-12 px-6 border-t border-gray-200">
                 <div className="max-w-7xl mx-auto">
-                    <div className="grid md:grid-cols-3 gap-8 mb-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mb-8">
                         <div>
                             <div className="flex items-center gap-2 mb-4">
                                 <span className="text-2xl font-bold text-teal-600">Emma</span>

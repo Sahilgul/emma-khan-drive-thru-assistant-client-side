@@ -70,7 +70,7 @@ export const WaitingView = ({
         )}
 
         {/* Content Overlay */}
-        <div className="absolute inset-0 bg-black/80 p-5 2xl:p-10 space-y-20">
+        <div className="absolute inset-0 bg-black/80 p-6 sm:p-10 lg:p-16 flex flex-col justify-start pt-2 sm:pt-4 lg:pt-6 gap-4 sm:gap-6 lg:gap-8">
           {/* Logo with entrance animation */}
           <ImageWrapper
             className={cn(
@@ -81,7 +81,7 @@ export const WaitingView = ({
             <Image
               src={PUBLIC_ASSETS_IMAGES.BrandLogoImg}
               alt="company-logo"
-              className="h-auto w-[90%] mx-auto max-w-[400px]"
+              className="h-auto w-[60%] sm:w-[50%] lg:w-[40%] mx-auto max-w-[300px] lg:max-w-[400px]"
             />
           </ImageWrapper>
 
@@ -92,7 +92,7 @@ export const WaitingView = ({
               showButton ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             )}
           >
-            <H2 className="text-white font-bold 2xl:text-5xl text-center drop-shadow-lg">
+            <H2 className="text-white font-bold text-2xl sm:text-3xl lg:text-4xl 2xl:text-5xl text-center drop-shadow-lg max-w-2xl mx-auto leading-tight">
               Hi, I am Emma, your virtual order assistant.
             </H2>
           </div>
@@ -104,8 +104,8 @@ export const WaitingView = ({
               showButton ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             )}
           >
-            <H3 className="text-white font-medium 2xl:text-3xl text-center">
-              What would you <br /> like to order today?
+            <H3 className="text-white font-medium text-xl sm:text-2xl lg:text-3xl text-center leading-relaxed">
+              What would you <br className="hidden sm:block" /> like to order today?
             </H3>
           </div>
 
@@ -128,21 +128,22 @@ export const WaitingView = ({
           {/* Main action area */}
           <div
             className={cn(
-              'transition-all duration-1000 delay-800 relative z-50 flex justify-center',
-              showButton ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              'transition-all duration-1000 delay-800 relative z-50 flex justify-center lg:justify-start lg:pl-10',
+              showButton ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4',
+              'mt-10 sm:mt-16 lg:mt-20'
             )}
           >
-            <div className="space-y-6">
+            <div className="space-y-6 flex flex-col items-center lg:items-start">
               {/* Start Order Button - hide after session starts */}
               {!isSessionStarted && showButton && (
-                <div className="flex flex-col items-center space-y-4">
+                <div className="flex flex-col items-center lg:items-start space-y-4">
                   <StartOrderButton
                     onClick={handleStartOrder}
                     isLoading={false}
                     isDisabled={false}
                     size="xl"
                     variant="primary"
-                    className="min-w-[300px] transform transition-all duration-500 hover:scale-105"
+                    className="w-full sm:w-auto min-w-[260px] transform transition-all duration-500 hover:scale-105"
                   />
                   <StartOrderButtonDescription />
                 </div>
@@ -174,7 +175,7 @@ export const WaitingView = ({
             >
               <Image
                 src={PUBLIC_ASSETS_IMAGES.AiModelImg}
-                className="w-auto h-[50svh] 2xl:h-[65svh] drop-shadow-2xl"
+                className="w-auto h-[40svh] sm:h-[50svh] lg:h-[60svh] 2xl:h-[65svh] drop-shadow-2xl"
                 alt="ai-model-img"
               />
             </ImageWrapper>

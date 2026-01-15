@@ -78,20 +78,20 @@ export const OrderComplete = ({
           <div className="absolute inset-0 w-full h-full bg-gradient-to-b from-gray-900 to-black" />
         )}
 
-        <div className="absolute inset-0 bg-black/80 p-5 2xl:p-10 space-y-20">
+        <div className="absolute inset-0 bg-black/80 p-6 sm:p-10 lg:p-16 flex flex-col justify-start pt-2 sm:pt-4 lg:pt-6 gap-6 sm:gap-12 lg:gap-16">
           <Image
             src={PUBLIC_ASSETS_IMAGES.BrandLogoImg}
             alt="company-logo"
-            className="h-auto w-[90%] mx-auto"
+            className="h-auto w-[60%] sm:w-[50%] lg:w-[40%] mx-auto max-w-[300px] lg:max-w-[400px]"
           />
-          <H2 className="text-white font-bold 2xl:text-5xl text-center">
-            Thanks for your order! <br /> Can I get your name please?
+          <H2 className="text-white font-bold text-2xl sm:text-3xl lg:text-4xl 2xl:text-5xl text-center leading-tight">
+            Thanks for your order! <br className="hidden sm:block" /> Can I get your name please?
           </H2>
 
           <div className="absolute bottom-0 right-0 w-full">
             <Image
               src={PUBLIC_ASSETS_IMAGES.AiModelImg}
-              className="w-auto h-[60svh] translate-x-1/2"
+              className="w-auto h-[45svh] sm:h-[55svh] lg:h-[60svh] translate-x-1/2 drop-shadow-2xl"
               alt="ai-model-img"
             />
           </div>

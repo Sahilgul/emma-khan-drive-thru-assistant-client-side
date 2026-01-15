@@ -18,11 +18,11 @@ export const VoiceHeader: React.FC<VoiceHeaderProps> = ({
   hideVisualization = false,
 }) => {
   return (
-    <div className="bg-emma-primary text-white p-1 2xl:p-2 rounded flex items-center justify-between transition-all duration-300 ease-in-out h-[60px] 2xl:h-[80px] shrink-0 overflow-hidden">
+    <div className="bg-emma-primary text-white p-2 sm:p-3 rounded lg:rounded-xl flex items-center justify-between transition-all duration-300 ease-in-out min-h-[60px] lg:h-[80px] shrink-0 overflow-hidden">
       {/* Text Content */}
-      <div className="transition-all duration-300 ease-in-out pl-4 2xl:pl-8">
-        <H2 className="font-bold transition-all duration-300">{title}</H2>
-        <Paragraph className="transition-all duration-300">
+      <div className="transition-all duration-300 ease-in-out pl-2 sm:pl-4 lg:pl-8">
+        <H2 className="text-base sm:text-lg lg:text-2xl font-bold transition-all duration-300 leading-tight">{title}</H2>
+        <Paragraph className="text-xs sm:text-sm lg:text-base transition-all duration-300 opacity-90">
           {description}
         </Paragraph>
       </div>

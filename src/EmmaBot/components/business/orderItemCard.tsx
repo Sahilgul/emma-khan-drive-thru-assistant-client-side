@@ -39,26 +39,26 @@ export const OrderItemCard: React.FC<OrderItemCardProps> = ({
       }
     >
       {/* Item Image */}
-      <ImageWrapper className="size-14 2xl:size-20">
+      <ImageWrapper className="size-14 sm:size-16 lg:size-20 shrink-0">
         <Image src={image} alt={title} />
       </ImageWrapper>
 
       <div className="flex-1 *:p-0">
         <CardHeader className="">
-          <CardTitle className="text-emma-primary 2xl:text-2xl">
+          <CardTitle className="text-emma-primary text-sm sm:text-base lg:text-2xl leading-none">
             {offerCategory}
           </CardTitle>
-          <CardTitle className="2xl:text-xl">{title}</CardTitle>
-          <CardDescription className="max-w-[35ch]">
+          <CardTitle className="text-base sm:text-lg lg:text-xl font-bold">{title}</CardTitle>
+          <CardDescription className="text-[10px] sm:text-xs lg:text-sm max-w-[35ch] leading-tight">
             {description}
           </CardDescription>
-          <CardAction className="flex items-center gap-2">
+          <CardAction className="flex items-center gap-2 mt-1 sm:mt-2">
             {showQuantity && quantity && quantity > 1 && (
-              <Badge variant="outline" className="rounded-full text-base font-semibold">
+              <Badge variant="outline" className="rounded-full text-[10px] sm:text-xs lg:text-base font-semibold px-2 py-0">
                 x{quantity}
               </Badge>
             )}
-            <Badge className="rounded-full text-base font-semibold">
+            <Badge className="rounded-full text-[10px] sm:text-xs lg:text-base font-semibold px-2 py-0">
               ${item.price.toFixed(2)}
             </Badge>
           </CardAction>

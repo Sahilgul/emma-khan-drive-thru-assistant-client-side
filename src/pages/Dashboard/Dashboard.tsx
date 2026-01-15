@@ -36,9 +36,9 @@ ChartJS.register(
 
 // State Components
 const LoadingState: React.FC = () => (
-  <div className="flex flex-col items-center justify-center h-[500px] text-teal-600">
-    <Loader className="animate-spin mb-4" size={48} />
-    <h3 className="text-xl font-semibold text-slate-700">Loading Dashboard...</h3>
+  <div className="flex flex-col items-center justify-center min-h-[400px] h-[60vh] text-teal-600 p-4">
+    <Loader className="animate-spin mb-4" size={40} />
+    <h3 className="text-lg sm:text-xl font-semibold text-slate-700 text-center">Loading Dashboard...</h3>
   </div>
 );
 
@@ -48,12 +48,12 @@ interface ErrorStateProps {
 }
 
 const ErrorState: React.FC<ErrorStateProps> = ({ message, onRetry }) => (
-  <div className="flex flex-col items-center justify-center h-[500px] text-red-500">
-    <AlertCircle size={48} className="mb-4" />
-    <h3 className="text-xl font-semibold text-slate-800">Something went wrong</h3>
-    <p className="text-slate-500 mb-6">{message}</p>
+  <div className="flex flex-col items-center justify-center min-h-[400px] h-[60vh] text-red-500 p-4 text-center">
+    <AlertCircle size={40} className="mb-4" />
+    <h3 className="text-lg sm:text-xl font-semibold text-slate-800">Something went wrong</h3>
+    <p className="text-sm sm:text-base text-slate-500 mb-6 max-w-md">{message}</p>
     {onRetry && (
-      <button onClick={onRetry} className="px-6 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors">
+      <button onClick={onRetry} className="w-full sm:w-auto px-6 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors">
         Try Again
       </button>
     )}
@@ -61,10 +61,10 @@ const ErrorState: React.FC<ErrorStateProps> = ({ message, onRetry }) => (
 );
 
 const EmptyState: React.FC = () => (
-  <div className="flex flex-col items-center justify-center h-[500px] text-slate-400">
-    <Database size={48} className="mb-4" />
-    <h3 className="text-xl font-semibold text-slate-700">No Data Available</h3>
-    <p>No dashboard data found for the selected period</p>
+  <div className="flex flex-col items-center justify-center min-h-[400px] h-[60vh] text-slate-400 p-4 text-center">
+    <Database size={40} className="mb-4" />
+    <h3 className="text-lg sm:text-xl font-semibold text-slate-700">No Data Available</h3>
+    <p className="text-sm sm:text-base">No dashboard data found for the selected period</p>
   </div>
 );
 
@@ -472,21 +472,23 @@ const Dashboard: React.FC = () => {
   ];
 
   return (
-    <div className="p-8 pb-24 bg-slate-50 min-h-screen">
+    <div className="p-4 sm:p-6 lg:p-8 pb-24 bg-slate-50 min-h-screen">
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-slate-800">Sales Overview</h1>
-          <p className="text-slate-500 mt-1">Welcome back, here's what's happening today.</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-slate-800">Sales Overview</h1>
+          <p className="text-sm sm:text-base text-slate-500 mt-1">Welcome back, here's what's happening today.</p>
         </div>
 
-        <div className="relative">
+        <div className="relative w-full sm:w-auto">
           <button
-            className="flex items-center gap-2 px-4 py-2.5 bg-white text-slate-700 rounded-xl shadow-sm border border-slate-200 hover:bg-slate-50 transition-colors text-sm font-medium"
+            className="w-full sm:w-auto flex items-center justify-between sm:justify-center gap-2 px-4 py-2.5 bg-white text-slate-700 rounded-xl shadow-sm border border-slate-200 hover:bg-slate-50 transition-colors text-sm font-medium"
             onClick={() => setShowDateDropdown(!showDateDropdown)}
           >
-            <Calendar size={16} className="text-teal-600" />
-            {dateRange.label}
+            <div className="flex items-center gap-2">
+              <Calendar size={16} className="text-teal-600" />
+              {dateRange.label}
+            </div>
             <ChevronDown size={14} className={`text-slate-400 transition-transform ${showDateDropdown ? 'rotate-180' : ''}`} />
           </button>
 
@@ -518,16 +520,16 @@ const Dashboard: React.FC = () => {
       {/* Top KPIs */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         {kpiData.map((kpi, i) => (
-          <div key={i} className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-            <div className="text-sm font-medium text-slate-500 mb-4">{kpi.title}</div>
+          <div key={i} className="bg-white p-5 sm:p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+            <div className="text-sm font-medium text-slate-500 mb-3 sm:mb-4">{kpi.title}</div>
             <div className="flex items-end justify-between mb-2">
-              <div className="text-3xl font-bold text-slate-800 tracking-tight">{kpi.value}</div>
-              <div className={`flex items-center gap-1 text-sm font-bold px-2 py-1 rounded-full ${kpi.up ? "text-teal-700 bg-teal-50" : "text-red-600 bg-red-50"}`}>
-                {kpi.up ? <TrendingUp size={14} /> : <TrendingDown size={14} />}
+              <div className="text-2xl sm:text-3xl font-bold text-slate-800 tracking-tight">{kpi.value}</div>
+              <div className={`flex items-center gap-1 text-[10px] sm:text-sm font-bold px-2 py-1 rounded-full ${kpi.up ? "text-teal-700 bg-teal-50" : "text-red-600 bg-red-50"}`}>
+                {kpi.up ? <TrendingUp size={12} className="sm:w-3.5 sm:h-3.5" /> : <TrendingDown size={12} className="sm:w-3.5 sm:h-3.5" />}
                 {kpi.change}
               </div>
             </div>
-            <p className="text-xs text-slate-400">{kpi.desc}</p>
+            <p className="text-[10px] sm:text-xs text-slate-400 line-clamp-1">{kpi.desc}</p>
           </div>
         ))}
       </div>
@@ -555,13 +557,13 @@ const Dashboard: React.FC = () => {
         </div>
 
         {/* Upsell Card */}
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center justify-center">
-          <h3 className="text-lg font-bold text-slate-800 mb-6 w-full text-left">Upselling Performance</h3>
-          <div className="relative h-[220px] w-[220px]">
+        <div className="bg-white p-5 sm:p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center justify-center">
+          <h3 className="text-lg font-bold text-slate-800 mb-6 w-full text-left sm:text-center lg:text-left">Upselling Performance</h3>
+          <div className="relative h-[200px] w-[200px] sm:h-[220px] sm:w-[220px]">
             <Doughnut data={doughnutUpsellData} options={doughnutUpsellOptions} />
             <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-              <span className="text-3xl font-bold text-slate-800">{data.upsellingPerformance.combos}%</span>
-              <span className="text-xs text-slate-500 font-medium uppercase tracking-wider">Combos</span>
+              <span className="text-2xl sm:text-3xl font-bold text-slate-800">{data.upsellingPerformance.combos}%</span>
+              <span className="text-[10px] sm:text-xs text-slate-500 font-medium uppercase tracking-wider">Combos</span>
             </div>
           </div>
         </div>
@@ -570,10 +572,10 @@ const Dashboard: React.FC = () => {
       {/* Drive Thru + Refund + Peak Hours */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
         {/* Drive Thru Customers */}
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-          <h3 className="text-lg font-bold text-slate-800 mb-2">Drive Thru Traffic</h3>
-          <p className="text-sm text-slate-500 mb-6">Weekly customer overview</p>
-          <div className="h-[200px] w-full">
+        <div className="bg-white p-5 sm:p-6 rounded-2xl shadow-sm border border-slate-100">
+          <h3 className="text-lg font-bold text-slate-800 mb-1 sm:mb-2 text-center sm:text-left">Drive Thru Traffic</h3>
+          <p className="text-sm text-slate-500 mb-6 text-center sm:text-left">Weekly customer overview</p>
+          <div className="h-[200px] sm:h-[220px] w-full">
             <Line data={driveThruData} options={driveThruOptions} />
           </div>
           <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
@@ -583,29 +585,29 @@ const Dashboard: React.FC = () => {
         </div>
 
         {/* Refunds */}
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center justify-center">
-          <h3 className="text-lg font-bold text-slate-800 mb-4 w-full text-left">Refunds & Cancellation</h3>
-          <div className="relative h-[180px] w-[180px] mb-4">
+        <div className="bg-white p-5 sm:p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center justify-center">
+          <h3 className="text-lg font-bold text-slate-800 mb-4 w-full text-left sm:text-center lg:text-left">Refunds & Cancellation</h3>
+          <div className="relative h-[160px] w-[160px] sm:h-[180px] sm:w-[180px] mb-4">
             <Doughnut data={refundData} options={refundOptions} />
             <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-              <span className="text-2xl font-bold text-red-500">{data.refunds.percent}%</span>
+              <span className="text-xl sm:text-2xl font-bold text-red-500">{data.refunds.percent}%</span>
               <span className="text-[10px] text-slate-400 font-medium uppercase mt-0.5">Rate</span>
             </div>
           </div>
-          <p className="text-sm text-slate-500">
+          <p className="text-xs sm:text-sm text-slate-500 text-center">
             Total Refunded: <span className="font-bold text-slate-800">{formatCurrency(data.refunds.totalAmount)}</span>
           </p>
         </div>
 
         {/* Peak Hours */}
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+        <div className="bg-white p-5 sm:p-6 rounded-2xl shadow-sm border border-slate-100 md:col-span-2 lg:col-span-1">
           <div className="flex items-center justify-between mb-6">
-            <h3 className="text-lg font-bold text-slate-800">Peak Hours</h3>
+            <h3 className="text-lg font-bold text-slate-800 text-center sm:text-left w-full">Peak Hours</h3>
           </div>
           <div className="h-[200px] w-full">
             <Bar data={peakHoursData} options={peakHoursOptions} />
           </div>
-          <div className="mt-6 flex items-center gap-2 text-sm text-slate-500">
+          <div className="mt-6 flex items-center justify-center sm:justify-start gap-2 text-xs sm:text-sm text-slate-500">
             <div className="w-2 h-2 rounded-full bg-teal-600"></div>
             <span>Busiest: <b>12:00 PM - 2:00 PM</b></span>
           </div>
@@ -614,9 +616,9 @@ const Dashboard: React.FC = () => {
 
       {/* Orders Table */}
       <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
-        <div className="p-6 border-b border-slate-100 flex items-center justify-between">
-          <h3 className="text-lg font-bold text-slate-800">Recent Orders</h3>
-          <button className="text-sm font-medium text-teal-600 hover:text-teal-700 hover:bg-teal-50 px-3 py-1.5 rounded-lg transition-colors flex items-center gap-1">
+        <div className="p-5 sm:p-6 border-b border-slate-100 flex items-center justify-between">
+          <h3 className="text-base sm:text-lg font-bold text-slate-800">Recent Orders</h3>
+          <button className="text-xs sm:text-sm font-medium text-teal-600 hover:text-teal-700 hover:bg-teal-50 px-2 sm:px-3 py-1.5 rounded-lg transition-colors flex items-center gap-1">
             View All <ChevronDown size={14} className="-rotate-90" />
           </button>
         </div>
