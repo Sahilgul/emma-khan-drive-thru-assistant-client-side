@@ -81,7 +81,7 @@ export const WaitingView = ({
             <Image
               src={PUBLIC_ASSETS_IMAGES.BrandLogoImg}
               alt="company-logo"
-              className="h-auto w-[60%] sm:w-[50%] lg:w-[40%] mx-auto max-w-[300px] lg:max-w-[400px]"
+              className="transition-opacity duration-300 h-auto w-[90%] mx-auto max-w-[400px]"
             />
           </ImageWrapper>
 
@@ -89,11 +89,11 @@ export const WaitingView = ({
           <div
             className={cn(
               'transition-all duration-1000 delay-400',
-              showButton ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              showButton ? 'opacity-100 translate-y-[15px]' : 'opacity-0 translate-y-4'
             )}
           >
-            <H2 className="text-white font-bold text-2xl sm:text-3xl lg:text-4xl 2xl:text-5xl text-center drop-shadow-lg max-w-2xl mx-auto leading-tight">
-              Hi, I am Emma, your virtual order assistant.
+            <H2 className="text-white font-bold text-2xl sm:text-3xl lg:text-4xl 2xl:text-5xl text-center drop-shadow-lg w-full mx-auto leading-tight">
+              Hi, I am Emma, your virtual order assistant
             </H2>
           </div>
 
@@ -101,7 +101,7 @@ export const WaitingView = ({
           <div
             className={cn(
               'transition-all duration-1000 delay-600 flex justify-center',
-              showButton ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              showButton ? 'opacity-100 translate-y-[15px]' : 'opacity-0 translate-y-4'
             )}
           >
             <H3 className="text-white font-medium text-xl sm:text-2xl lg:text-3xl text-center leading-relaxed">
