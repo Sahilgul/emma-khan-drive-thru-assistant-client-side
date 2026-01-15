@@ -1,0 +1,227 @@
+/* Fullscreen Center Container */
+.signin-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f7f8fc;
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Card */
+.signin-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  padding: 50px 40px;
+  width: 400px;
+  max-width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+/* Logo */
+.logo {
+  width: 220px;
+  height: 50px;
+  background: url('/images/brand-logo.png') no-repeat center;
+  background-size: contain;
+  margin-bottom: 25px;
+}
+
+/* Title + Subtitle */
+/* Title */
+.title {
+font-weight: 300;
+font-style: Light;
+font-size: 31px;
+line-height: 120%;
+letter-spacing: 0.5%;
+
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.highlight {
+  
+color: var(--secondary-color);
+font-weight: 600;
+font-style: SemiBold;
+font-size: 31px;
+line-height: 120%;
+letter-spacing: 0.5%;
+}
+
+.subtitle {
+  color: var(--text-gray);
+  font-size: 14px;
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.signin-card form{
+  width: 320px;
+}
+
+/* Input Fields */
+.field {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 22px;
+  position: relative;
+}
+
+.field label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 6px;
+  font-size: 16px;
+  color: #333;
+}
+
+.field input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--text-gray);
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.field input:focus {
+  outline: none;
+  border: 1px solid var(--secondary-color);
+  box-shadow: 0 0 0 2px var(--secondary-light);
+}
+/* Reduce bottom margin only for password field */
+.field.password {
+  margin-bottom: 0px; /* smaller gap before 'Forgot password?' */
+}
+
+/* Password visibility toggle */
+.signin-card .password .toggle-visibility {
+  position: absolute;
+  right: 12px;
+  top: 53%;
+  transform: translateY(-5%);
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--text-gray);
+  transition: color 0.2s ease;
+}
+
+.signin-card .password .toggle-visibility:hover {
+  color: var(--secondary-hover);
+}
+
+/* Forgot password link */
+.forgot {
+  width: 100%;
+  text-align: right;
+  font-size: 13px;
+  color: var(--text-gray);
+  cursor: pointer;
+  margin-bottom: 32px;
+  transition: color 0.2s ease;
+}
+
+.forgot:hover {
+  color: var(--secondary-hover);
+}
+
+/* Sign In Button */
+.signin-btn {
+  width: 100%;
+  background: var(--secondary-color);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  padding: 14px 0;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0px 10px 30px 0px #00000033;
+  transition: all 0.2s ease;
+}
+
+.signin-btn:hover {
+  background: var(--secondary-hover);
+  transform: translateY(-2px);
+}
+
+/* ---------- RESPONSIVE DESIGN ---------- */
+
+/* Tablet */
+@media (max-width: 768px) {
+  .signin-card {
+    width: 90%;
+    padding: 40px 30px;
+  }
+
+  .title {
+    font-size: 22px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .signin-container {
+    padding: 10px;
+  }
+
+  .signin-card {
+    width: 100%;
+    padding: 30px 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  }
+
+  .logo {
+    width: 180px;
+    height: 40px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .subtitle {
+    font-size: 12px;
+  }
+
+  .field input {
+    font-size: 14px;
+    padding: 12px 14px;
+  }
+
+  .signin-btn {
+    font-size: 14px;
+    padding: 12px 0;
+  }
+}
+
+.signin-card {
+  animation: fadeInUp 0.5s ease;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

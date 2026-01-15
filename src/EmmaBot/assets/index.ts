@@ -1,0 +1,30 @@
+export const PUBLIC_ASSETS_ICONS = {
+  BurgerIcon: '/icons/mci-burger.png',
+  WrapIcon: '/icons/mci-wrap.png',
+  FrenchFriesIcon: '/icons/mci-french-fries.png',
+  CoffeeCupIcon: '/icons/mci-coffee-cup.png',
+  SoftDrinksIcon: '/icons/mci-soft-drink.png',
+  DessertIcon: '/icons/mci-cupcake.png',
+  ComboDealIcon: '/icons/combo-deals.png',
+  CheeseIcon: '/icons/cheese.png',
+  BaconIcon: '/icons/bacon.png',
+  FriedEggIcon: '/icons/frying-pan-egg.png',
+  JalapenoIcon: '/icons/jalapeno.png',
+  MushroomIcon: '/icons/mushroom.png',
+  PineappleIcon: '/icons/pineapple.png',
+  OnionIcon: '/icons/onion.png',
+  NuggetsIcon: '/icons/nuggets.png',
+  MilkShakeIcon: '/icons/milk-shake.png',
+  OnionRingsIcon: '/icons/onion-ring-with-dip.png',
+} as const;
+
+export const PUBLIC_ASSETS_IMAGES = {
+  MidNightDealImg: '/images/mid-night-deal-bg.png',
+  WrapImg: '/images/wrap-bg.png',
+  BurgerImg: '/images/delicious-burger.png',
+  BrandLogoImg: '/images/brand-logo.png',
+  OrderScreenImg: '/images/order-screen-bg.jpg',
+  AddOnImg: '/images/add-ons.png',
+  DessertsBg: '/images/dessert-bg.png',
+  AiModelImg: '/images/model-img.png',
+} as const;

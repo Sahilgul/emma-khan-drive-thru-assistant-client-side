@@ -1,0 +1,283 @@
+* {
+  font-family: var(--font-family);
+  box-sizing: border-box;
+}
+
+/* Page container */
+.categories-container {
+  padding: 24px;
+  min-height: 100vh;
+}
+
+/* Header */
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.menu-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.add-menu-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--secondary-color);
+  color: #fff;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 10px 16px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.add-menu-btn:hover {
+  background: var(--secondary-hover);
+}
+
+/* Category tabs */
+.category-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.category-tab {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #6b7280;
+  padding-bottom: 0.75rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.category-tab.active {
+  color: var(--secondary-color);
+  border-bottom: 2px solid var(--secondary-color);
+}
+
+/* Grid layout */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+/* Menu Card */
+.menu-card {
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 24px 24px 64px 0px #0000000f;
+  padding: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 300px;
+  transition: all 0.3s;
+}
+
+.menu-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 20px 20px 60px 0px #00000012;
+}
+
+/* Disabled look */
+.menu-card.not-available {
+  opacity: 0.8;
+  filter: grayscale(40%);
+  border: 1px solid #d1d5db;
+}
+
+/* Optional: Disable hover effect on unavailable cards */
+.menu-card.not-available:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Edit icon */
+.edit-icon {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--secondary-light);
+  color: var(--secondary-color);
+  padding: 8px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+.edit-icon:hover {
+  color: #FFFF;
+  background: var(--secondary-hover);
+}
+
+/* Image */
+.menu-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.menu-img img {
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: white;
+}
+
+.menu-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* keep name/combo/desc top-aligned */
+  text-align: left;
+  gap: 4px; /* ✅ small consistent spacing between text elements */
+  margin-bottom: 8px; /* ✅ less gap before footer */
+}
+
+
+.menu-name {
+  font-weight: 600;
+  font-size: 20px;
+  color: #111827;
+}
+
+.menu-combo {
+  color: var(--secondary-color);
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+.menu-desc {
+  margin-top: 6px;
+  font-weight: 400;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: #6c7b7e;
+  flex-grow: 0; /* ✅ prevent extra space */
+  min-height: auto; /* ✅ remove forced height */
+  margin-bottom: 8px; /* ✅ small controlled gap before footer */
+}
+
+
+/* Footer */
+.menu-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+/* Price */
+.menu-price {
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  background: var(--secondary-color);
+  border-radius: 16px;
+  padding: 4px 20px;
+}
+
+/* Status */
+.menu-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggle {
+  width: 36px;
+  height: 18px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  transition: all 0.3s ease;
+}
+
+.toggle.on {
+  background: var(--secondary-color);
+}
+
+.toggle.off {
+  background: #d1d5db;
+}
+
+.toggle-circle {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.3s;
+}
+
+.toggle.on .toggle-circle {
+  transform: translateX(18px);
+}
+
+.status-text.available {
+  color: var(--secondary-color);
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+.status-text.not {
+  color: #9ca3af;
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .menu-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .menu-card {
+    padding: 16px;
+  }
+
+  .menu-name {
+    font-size: 1rem;
+  }
+
+  .menu-price {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .categories-container {
+    padding: 16px;
+  }
+
+  .menu-grid {
+    gap: 16px;
+  }
+
+  .menu-card {
+    border-radius: 16px;
+  }
+  .edit-icon {
+    padding-left: 15px;
+    text-align: -webkit-right;
+    background-color: transparent;
+  }
+
+}

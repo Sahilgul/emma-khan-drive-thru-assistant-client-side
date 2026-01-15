@@ -1,0 +1,198 @@
+.addaddons-container {
+  padding: 2rem;
+  font-family: var(--font-family);
+}
+
+/* ===== HEADER ===== */
+.addaddons-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: right;
+  width: 100%;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-left h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.edit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--secondary-color);
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.edit-btn:hover {
+  background-color: var(--secondary-hover);
+}
+
+.apply-btn {
+  background-color: var(--secondary-color);
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.apply-btn:hover {
+  background-color: var(--secondary-hover);
+}
+
+/* ===== ADDON CARD ===== */
+.addon-wrapper {
+  margin-bottom: 2rem;
+  max-width: 700px;
+}
+
+.addon-card {
+  border-radius: 20px;
+  padding: 1.5rem;
+  background: #fff;
+  border: 1px solid #6C7B7E;
+  box-shadow: 0px 0px 10px 5px #0000000D;
+}
+
+.addon-wrapper h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.addon-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.addon-field {
+  flex: 1;
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+}
+
+.addon-field label {
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.3rem;
+}
+
+.addon-field input,
+.addon-field select {
+  border: 1px solid #bcc4cc;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 14px;
+  transition: all 0.2s;
+  background: #fff;
+}
+
+.addon-field input:focus,
+.addon-field select:focus {
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 2px #76b90033;
+  outline: none;
+}
+
+/* ===== ACTION BUTTONS ===== */
+.action-row {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.addmore-btn,
+.delete-btn,
+.save-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  padding: 0.6rem 1rem;
+  transition: all 0.2s;
+}
+
+.addmore-btn {
+  background: none;
+  color: var(--secondary-color);
+}
+.addmore-btn:hover {
+  color: var(--secondary-hover);
+}
+
+.delete-btn {
+  background-color: #ef4444;
+  color: #fff;
+}
+.delete-btn:hover {
+  background-color: #dc2626;
+}
+
+.save-btn {
+  background-color: var(--secondary-color);
+  color: #fff;
+}
+.save-btn:hover {
+  background-color: var(--secondary-hover);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .addaddons-container {
+    padding: 1rem;
+  }
+
+  .addaddons-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+
+  .header-left {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .addon-card {
+    padding: 1rem;
+  }
+
+  .addon-row {
+    flex-direction: column;
+  }
+
+  .action-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .addmore-btn,
+  .delete-btn,
+  .save-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

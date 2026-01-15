@@ -1,0 +1,51 @@
+/* ===============================
+   🌐 BREAKPOINTS & ROOT VARIABLES
+=================================*/
+
+/* Extra Large Screens (>=1440px) */
+@media (min-width: 1440px) {
+    :root {
+      --container-width: 1200px;
+      --font-size: 16px;
+    }
+  }
+  
+  /* Large Screens (1280px - 1439px) */
+  @media (max-width: 1439px) {
+    :root {
+      --container-width: 1100px;
+      --font-size: 15.5px;
+    }
+  }
+  
+  /* Desktop / Tablets (1024px - 1279px) */
+  @media (max-width: 1279px) {
+    :root {
+      --container-width: 95%;
+      --font-size: 15px;
+    }
+  }
+  
+  /* Tablets / Small Devices (768px - 1023px) */
+  @media (max-width: 1024px) {
+    :root {
+      --container-width: 95%;
+      --font-size: 14.5px;
+    }
+  }
+  
+  /* Small Phones (480px - 767px) */
+  @media (max-width: 767px) {
+    :root {
+      --container-width: 100%;
+      --font-size: 14px;
+    }
+  }
+  
+  /* Extra Small Phones (<480px) */
+  @media (max-width: 480px) {
+    :root {
+      --font-size: 13px;
+    }
+  }
+  

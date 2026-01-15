@@ -1,0 +1,35 @@
+:root {
+    --primary-color: #0f172a; /* Slate 900 */
+    --secondary-color: #D4AF37; /* Gold */
+    --secondary-hover: color-mix(in srgb, var(--secondary-color) 80%, black);
+    --secondary-light:color-mix(in srgb, var(--secondary-color) 15%, white);
+    --danger-color: #991B1B;
+    --danger-hover: color-mix(in srgb, var(--danger-color) 80%, black);
+    --danger-light: color-mix(in srgb, var(--danger-color) 15%, white);
+    --text-gray: #4b5563;
+    --border-gray: #e2e8f0;
+    --bg-light: #f8fafc;
+    --font-family: "Poppins", sans-serif;
+    --background-color: #f8fafc;
+    --topbar-color: #ffffff;
+    --chart-bg: #f1f5f9;
+    --status-received: #D4AF37;
+    --status-received-bg: color-mix(in srgb, var(--status-received) 15%, white);
+    --status-cancelled: #ef4444;
+    --status-cancelled-bg: color-mix(in srgb, var(--status-cancelled) 15%, white);
+    --status-kitchen: #f59e0b;
+    --status-kitchen-bg: color-mix(in srgb, var(--status-kitchen) 15%, white);
+  }
+  
+  /* Dark mode variables - Premium */
+  [data-theme="dark"] {
+    --primary-color: #f8fafc; /* Text becomes light */
+    --secondary-color: #D4AF37;
+    --background-color: #0f172a; /* Deep Slate / Black */
+    --bg-light: #1e293b;
+    --topbar-color: #1e293b;
+    --text-gray: #94a3b8;
+    --border-gray: #334155;
+    --chart-bg: #1e293b;
+  }
+  
