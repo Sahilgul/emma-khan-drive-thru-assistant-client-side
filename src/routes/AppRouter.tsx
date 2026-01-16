@@ -20,6 +20,7 @@ import AddDrinks from "../pages/AddDrinks/AddDrinks";
 import Promotion from "../pages/Promotion/Promotion";
 import Settings from "../pages/Settings/Settings";
 import Notification from "../pages/Notification/Notification";
+import Profile from "../pages/Profile/Profile";
 
 // ---------- Components ----------
 import { ToastContainer } from "../components/ToastContainer";
@@ -64,6 +65,7 @@ const AppRouter = () => {
           <Route path="promotions" element={<Promotion />} />
           <Route path="settings" element={<Settings />} />
           <Route path="notification" element={<Notification />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
 
         {/* ---------- Standalone Protected Routes ---------- */}

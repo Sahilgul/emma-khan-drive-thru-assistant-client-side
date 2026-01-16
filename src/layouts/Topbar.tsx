@@ -30,6 +30,16 @@ const Topbar = ({ onMenuClick, sidebarOpen }: TopbarProps) => {
     navigate("/notification");
   };
 
+  const handleProfile = () => {
+    navigate("/profile");
+    setShowUserMenu(false);
+  };
+
+  const handleSettings = () => {
+    navigate("/settings");
+    setShowUserMenu(false);
+  };
+
   const userData = JSON.parse(localStorage.getItem("user") || "null");
 
   return (
@@ -123,11 +133,17 @@ const Topbar = ({ onMenuClick, sidebarOpen }: TopbarProps) => {
               </div>
 
               <div className="px-2">
-                <button className="w-full flex items-center gap-3 px-3 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-teal-600 rounded-lg transition-colors">
+                <button
+                  onClick={handleProfile}
+                  className="w-full flex items-center gap-3 px-3 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-teal-600 rounded-lg transition-colors"
+                >
                   <User size={16} />
                   My Profile
                 </button>
-                <button className="w-full flex items-center gap-3 px-3 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-teal-600 rounded-lg transition-colors">
+                <button
+                  onClick={handleSettings}
+                  className="w-full flex items-center gap-3 px-3 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-teal-600 rounded-lg transition-colors"
+                >
                   <Settings size={16} />
                   Settings
                 </button>
