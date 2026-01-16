@@ -66,8 +66,12 @@ const SignUp: React.FC = () => {
       setViewState("signup");
       showSuccess("Welcome! Please complete your registration.");
     } catch (error: any) {
-      const message = error.response?.data?.detail || "Invalid passcode. Please try again or join the waitlist.";
-      showError(message);
+      if (error.response?.status === 429) {
+        showError("Too many attempts. Please wait a minute before trying again.");
+      } else {
+        const message = error.response?.data?.detail || "Invalid passcode. Please try again or join the waitlist.";
+        showError(message);
+      }
       setPasscode(["", "", "", "", "", ""]);
       document.getElementById("passcode-0")?.focus();
     } finally {
@@ -129,9 +133,13 @@ const SignUp: React.FC = () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.error("❌ Signup error:", error);
-      const message =
-        error.response?.data?.message || "Failed to create account. Please try again!";
-      showError(message);
+      if (error.response?.status === 429) {
+        showError("Too many sign-up attempts. Please try again in an hour.");
+      } else {
+        const message =
+          error.response?.data?.message || "Failed to create account. Please try again!";
+        showError(message);
+      }
     } finally {
       setLoading(false);
     }

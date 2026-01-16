@@ -40,6 +40,8 @@ const SignIn: FC = () => {
 
       if (err.response?.status === 401) {
         showError("Invalid email or password.");
+      } else if (err.response?.status === 429) {
+        showError("Too many login attempts. Please wait a minute before trying again.");
       } else {
         const msg =
           err.response?.data?.message ||
