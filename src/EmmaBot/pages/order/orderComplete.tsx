@@ -82,7 +82,7 @@ export const OrderComplete = ({
           <Image
             src={PUBLIC_ASSETS_IMAGES.BrandLogoImg}
             alt="company-logo"
-            className="h-auto w-[60%] sm:w-[50%] lg:w-[40%] mx-auto max-w-[300px] lg:max-w-[400px]"
+            className="h-auto w-[30%] sm:w-[25%] lg:w-[20%] mx-auto max-w-[150px] lg:max-w-[200px]"
           />
           <H2 className="text-white font-bold text-2xl sm:text-3xl lg:text-4xl 2xl:text-5xl text-center leading-tight">
             Thanks for your order! <br className="hidden sm:block" /> Can I get your name please?

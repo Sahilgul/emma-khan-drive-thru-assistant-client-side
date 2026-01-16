@@ -81,7 +81,7 @@ export const WaitingView = ({
             <Image
               src={PUBLIC_ASSETS_IMAGES.BrandLogoImg}
               alt="company-logo"
-              className="transition-opacity duration-300 h-auto w-[90%] mx-auto max-w-[400px]"
+              className="transition-opacity duration-300 h-auto w-[30%] sm:w-[25%] lg:w-[20%] mx-auto max-w-[150px] lg:max-w-[200px]"
             />
           </ImageWrapper>
 
