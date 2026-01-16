@@ -22,7 +22,7 @@ export const PUBLIC_ASSETS_IMAGES = {
   MidNightDealImg: '/images/mid-night-deal-bg.png',
   WrapImg: '/images/wrap-bg.png',
   BurgerImg: '/images/delicious-burger.png',
-  BrandLogoImg: '/images/brand-logo.png',
+  BrandLogoImg: '/logo.png',
   OrderScreenImg: '/images/order-screen-bg.jpg',
   AddOnImg: '/images/add-ons.png',
   DessertsBg: '/images/dessert-bg.png',

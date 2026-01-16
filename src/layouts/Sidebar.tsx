@@ -16,7 +16,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { JSX } from "react/jsx-runtime";
-import logo from "/images/brand-logo.png";
+import logo from "../assets/logo.png";
 import { useAuth } from "../hooks/useAuth";
 
 interface MenuItem {

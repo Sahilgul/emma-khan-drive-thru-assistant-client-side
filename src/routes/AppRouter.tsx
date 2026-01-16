@@ -34,6 +34,7 @@ const AppRouter = () => {
         {/* ---------- Public Routes ---------- */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/recover-password" element={<RecoverPassword />} />
 
@@ -51,7 +52,7 @@ const AppRouter = () => {
           }
         >
 
-          <Route path="/signup" element={<SignUp />} />
+
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="menu/categories" element={<Categories />} />
           <Route path="menu/add-menu" element={<AddMenu />} />

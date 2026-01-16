@@ -5,7 +5,7 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { showError, showLoading } from "../../utils/alert";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
-import logo from "/images/brand-logo.png";
+import logo from "../../assets/logo.png";
 
 
 const SignIn: FC = () => {
@@ -60,9 +60,7 @@ const SignIn: FC = () => {
 
       <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl p-10 relative z-10 mx-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
         <div className="flex justify-center mb-8">
-          <div className="w-16 h-16 bg-teal-50 rounded-2xl flex items-center justify-center shadow-sm">
-            <img src={logo} alt="Logo" className="w-10 h-auto" />
-          </div>
+          <img src={logo} alt="Logo" className="w-16 h-auto" />
         </div>
 
         <div className="text-center mb-8">
@@ -133,6 +131,16 @@ const SignIn: FC = () => {
             ) : "Sign in"}
           </button>
         </form>
+
+        <p className="text-center text-sm font-medium text-gray-500 mt-8">
+          Don't have an account?{" "}
+          <span
+            className="text-teal-600 hover:text-teal-700 cursor-pointer hover:underline transition-colors"
+            onClick={() => navigate("/signup")}
+          >
+            Create Account
+          </span>
+        </p>
       </div>
 
       <div className="absolute bottom-6 text-center w-full text-gray-400 text-sm">

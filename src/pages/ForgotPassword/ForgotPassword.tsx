@@ -57,9 +57,7 @@ const ForgotPassword: React.FC = () => {
 
       <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl p-10 relative z-10 mx-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
         <div className="flex justify-center mb-8">
-          <div className="w-16 h-16 bg-teal-50 rounded-2xl flex items-center justify-center shadow-sm">
-            <img src={logo} alt="Logo" className="w-10 h-auto" />
-          </div>
+          <img src={logo} alt="Logo" className="w-16 h-auto" />
         </div>
 
         <div className="text-center mb-8">
